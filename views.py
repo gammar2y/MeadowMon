@@ -1,12 +1,12 @@
 import json
 import logging
-from (possibly django.http) import JsonResponse
-from (possibly Django.contrib.auth.models) import User
-from (possibly Django.contrib.auth) import logout (as) login, authticate
-from (possibly Django.views.decorators.csrf) import csrf_exempt
+from  django.http import JsonResponse
+from Django.contrib.auth.models import User
+from Django.contrib.auth import logout as login, authticate
+from Django.views.decorators.csrf import csrf_exempt
 from .products import Products, Cards
 from .populate import initiate
-(possibly: from .restapis import get_request, analyza_review_sentiments, post_review)
+#(possibly: from .restapis import get_request, analyza_review_sentiments, post_review)
 
 
 # logger instance
