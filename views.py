@@ -6,7 +6,7 @@ from Django.contrib.auth import logout as login, authticate
 from Django.views.decorators.csrf import csrf_exempt
 from .products import Products, Cards
 from .populate import initiate
-#(possibly: from .restapis import get_request, analyza_review_sentiments, post_review)
+from .restapis import get_request, post_review)
 
 
 # logger instance
