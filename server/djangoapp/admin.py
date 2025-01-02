@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Ca, CarModel
+from .models import Product, CardModel
 
 # Registering models with their respective admins
-admin.site.register(CarMake)
-admin.site.register(CarModel)
+admin.site.register(Product)
+admin.site.register(CardModel)
 # CarModelInline class
 
 # CarModelAdmin class
