@@ -4,10 +4,12 @@ RUN npm install -g npm@9.1.3
 
 ADD package.json .
 ADD app.js .
-ADD review.js .
-ADD dealership.js .
-ADD data/dealerships.json .
-ADD data/reviews.json .
+ADD order.js .
+ADD product.js .
+ADD cards.js .
+ADD data/cards.json .
+ADD data/product.json .
+ADD data/orders.json.
 COPY . .
 RUN npm install
 
