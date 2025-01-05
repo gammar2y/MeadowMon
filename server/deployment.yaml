@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: product
+  name: product
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: product
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: product
+    spec:
+      containers:
+      - image: us.icr.io/sn-labs-acrew1905/dealership:latest
+        imagePullPolicy: Always
+        name: product
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+      restartPolicy: Always
