@@ -20,7 +20,7 @@ spec:
         run: product
     spec:
       containers:
-      - image: us.icr.io/sn-labs-acrew1905/dealership:latest
+      - image: product:latest
         imagePullPolicy: Always
         name: product
         ports:
