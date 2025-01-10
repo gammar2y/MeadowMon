@@ -1,0 +1,27 @@
+.product {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+  }
+  
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .product-name {
+    font-size: 1.5em;
+    margin: 8px 0;
+  }
+  
+  .product-description {
+    font-size: 1em;
+    margin: 8px 0;
+  }
+  
+  .product-price {
+    font-size: 1.2em;
+    color: #b12704;
+    margin: 8px 0;
+  }
