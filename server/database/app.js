@@ -105,3 +105,7 @@ uploadOrder(orderData);
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+} catch (error) {
+  console.error('Failed to upload order:', error);
+  // Additional error handling logic can be added here
+}}
