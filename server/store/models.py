@@ -17,8 +17,8 @@ class CardModel(models.Model):
     CARD_TYPES = [
         ('Graded', 'Graded'),
         ('Singles', 'Singles'),
-        (‘Boxes’,’Boxes’)
+        ('Boxes','Boxes')
     ]
-    type = models.CharField(max_length=10, choices=CARD_TYPES, default='PACK’)
+    type = models.CharField(max_length=10, choices=CARD_TYPES, default='PACK')
     def __str__(self):
         return self.name

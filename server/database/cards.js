@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const reviews = new Schema({
+const card = new Schema({
   id: {
     type: Number,
     required: true,

@@ -7,10 +7,10 @@ from django.conf import settings
 urlpatterns = [
     path('login/', TemplateView.as_view(template_name="index.html")),
     path('register/', TemplateView.as_view(template_name="index.html")),
-    path(‘requests/’, TemplateView.as_view(template_name="index.html")),
-    path(‘cart/’, TemplateView.as_view(template_name="index.html")),
-    path(‘checkout/’, TemplateView.as_view(template_name="index.html")),
-    path(‘order_confirmation/’, TemplateView.as_view(template_name="index.html")),
+    path('requests/', TemplateView.as_view(template_name="index.html")),
+    path('cart/', TemplateView.as_view(template_name="index.html")),
+    path('checkout/', TemplateView.as_view(template_name="index.html")),
+    path('order_confirmation/', TemplateView.as_view(template_name="index.html")),
     path('get_product/', TemplateView.as_view(template_name="index.html")),
    
     path(

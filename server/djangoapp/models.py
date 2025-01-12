@@ -12,14 +12,14 @@ class Product(models.Model):
 
 
 class CardModel(models.Model):
-    card = models.ForeignKey(product, on_delete=models.CASCADE)
+    card = models.ForeignKey(Product, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     CARD_TYPES = [
         ('Graded', 'Graded'),
         ('Singles', 'Singles'),
-        (‘Boxes’,’Boxes’)
+        ('Boxes','Boxes')
     ]
-    type = models.CharField(max_length=10, choices=CARD_TYPES, default='PACK’)
+    type = models.CharField(max_length=10, choices=CARD_TYPES, default='PACK')
     def __str__(self):
         return self.name
 
