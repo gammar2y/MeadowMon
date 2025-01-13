@@ -8,7 +8,7 @@ ADD order.js .
 ADD product.js .
 ADD cards.js .
 ADD data/cards.json .
-ADD data/product.json .
+ADD data/products.json .
 ADD data/orders.json .
 COPY . .
 RUN npm install
