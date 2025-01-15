@@ -9,7 +9,7 @@ const port = 3030;
 app.use(cors());
 app.use(require('body-parser').urlencoded({ extended: false }));
 
-const product_data = JSON.parse(fs.readFileSync('product.json', 'utf8'));
+const product_data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const cards_data = JSON.parse(fs.readFileSync('cards.json', 'utf8'));
 
 mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'cardsDB' });
