@@ -1,10 +1,13 @@
 
 {
     "product": {
+      "product_id": 1,
       "name": "Sample Product",
       "price": 29.99,
-      "category": "Electronics",
+      "set": "Evolving Skies",
       "description": "This is a sample product description.",
-      "image": "path/to/image.jpg"
+      "card_type": "Booster Box",
+      "bodyType": "Booster Box",
+      "year": "2024"
     }
   }

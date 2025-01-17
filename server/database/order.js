@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const orders = new Schema({
   id: {
@@ -22,17 +22,6 @@ const orders = new Schema({
   zip: {
     type: String,
     required: true,
-  },
-  lat: {
-    type: String,
-    required: true,
-  },
-  long: {
-    type: String,
-    required: true,
-  },
-  short_name: {
-    type: String,
   },
   full_name: {
     type: String,

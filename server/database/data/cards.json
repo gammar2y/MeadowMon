@@ -1,0 +1,24 @@
+{
+    "cards": [
+      {
+        "id": 1,
+        "name": "Ace of Spades",
+        "description": "The highest card in the deck.",
+        "price": 10.99,
+        "year": "2024",
+        "grade": "10",
+        "set": "Evolving Skies",
+        "quantity": 100
+      },
+      {
+        "id": 2,
+        "name": "King of Hearts",
+        "description": "A high-ranking card in the deck.",
+        "price": 9.99,
+        "year": "2024",
+        "grade": "10",
+        "set": "Evolving Skies",
+        "quantity": 150
+      }
+    ]
+  }

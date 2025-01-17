@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const cards = new Schema({
+const product = new Schema({
   product_id: {
     type: Number,
     required: true,

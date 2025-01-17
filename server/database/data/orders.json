@@ -1,1 +1,33 @@
-
+{
+    "orders": [
+      {
+        "orderId": 1,
+        "customerId": 123,
+        "orderDate": "2023-10-01T10:00:00Z",
+        "full_name": "John Doe",
+        "status": "Processing",
+        "items": [
+          {
+            "productId": 1,
+            "productName": "Ace of Spades",
+            "quantity": 2,
+            "price": 10.99
+          },
+          {
+            "productId": 2,
+            "productName": "King of Hearts",
+            "quantity": 1,
+            "price": 9.99
+          }
+        ],
+        "totalAmount": 31.97,
+        "shippingAddress": {
+          "address": "123 Card St",
+          "city": "Cardville",
+          "state": "CA",
+          "zip": "90210",
+          "country": "USA"
+        }
+      }
+    ]
+  }

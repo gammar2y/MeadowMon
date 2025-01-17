@@ -11,11 +11,14 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 
 const product_data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
 const cards_data = JSON.parse(fs.readFileSync('cards.json', 'utf8'));
+const orders_data = JSON.parse(fs.readFileSync('orders.json', 'utf8'));
+
 
 mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'cardsDB' });
 
 const Product = require('./product');
 const Cards = require('./cards');
+const orders = require('./orders');
 
 try {
   Product.deleteMany({}).then(() => {
