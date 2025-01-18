@@ -6,6 +6,10 @@ import Cart from "./components/cart/cart";
 import Checkout from "./components/checkout/checkout";
 import PlaceOrder from "./components/orders/order";
 import Get_Product_Details from "./components/product/get_product_details";
+import React, { useEffect, useState } from 'react';
+import { fetchData } from './api/apiService';
+import Header from './components/Header';
+
 function App() {
   return (
     <Routes>
@@ -19,5 +23,26 @@ function App() {
           </Routes>
   );
 }
+
+const App = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData();
+      setData(result);
+    };
+    getData();
+  }, []);
+
+  return (
+    <div>
+      <Header />
+      <div>{data ? JSON.stringify(data) : 'Loading data...'}</div>
+      <Footer />
+    </div>
+  );
+};
+
 export default App;
 

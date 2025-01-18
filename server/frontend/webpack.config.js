@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -19,5 +20,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new Dotenv({
+      path: path.resolve(__dirname, '../.env'), // Path to .env file
+      safe: false // Load .env.example (defaults to "false" which does not use dotenv-safe)
+    })
+  ]
 };
