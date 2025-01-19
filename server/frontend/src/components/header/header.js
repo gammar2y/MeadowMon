@@ -1,5 +1,5 @@
 import React from 'react';
-import config from '../config';
+import config from '../../config.js';
 
 const Header = () => {
   console.log('Backend URL in Header:', config.backendUrl); // This should print the URL
