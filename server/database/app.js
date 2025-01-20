@@ -1,5 +1,6 @@
 /*jshint esversion: 8 */
 const express = require('express');
+const config = require('./config');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const cors = require('cors');
@@ -9,7 +10,12 @@ const port = 3030;
 const backendUrl = process.env.backend_url;
 console.log(`Backend URL: ${backendUrl}`);
 
-app.use(cors());
+app.use(cors({
+  origin: config.backendUrl, // Replace with your frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
+
 app.use(require('body-parser').urlencoded({ extended: false }));
 
 const product_data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
