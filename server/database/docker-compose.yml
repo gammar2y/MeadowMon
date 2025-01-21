@@ -14,7 +14,7 @@ services:
     container_name: api_container
     image: nodeapp
     ports:
-      - 3030:3030
+      - 3000:3000
     depends_on: 
       - mongo_db
     environment:

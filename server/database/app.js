@@ -1,7 +1,10 @@
+require('dotenv').config();
+
 /*jshint esversion: 8 */
 const express = require('express');
 const config = require('./config');
 const mongoose = require('mongoose');
+const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
@@ -18,16 +21,22 @@ app.use(cors({
 
 app.use(require('body-parser').urlencoded({ extended: false }));
 
-const product_data = JSON.parse(fs.readFileSync('products.json', 'utf8'));
-const cards_data = JSON.parse(fs.readFileSync('cards.json', 'utf8'));
-const orders_data = JSON.parse(fs.readFileSync('orders.json', 'utf8'));
+const product_data = JSON.parse(fs.readFileSync(path.join('./data/products.json'), 'utf8'));
+const cards_data = JSON.parse(fs.readFileSync(path.join('./data/cards.json'), 'utf8'));
+const orders_data = JSON.parse(fs.readFileSync(path.join('./data/orders.json'), 'utf8'));
 
 
 mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'cardsDB' });
 
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
+});
+
 const Product = require('./product');
 const Cards = require('./cards');
-const orders = require('./orders');
+const orders = require('./order');
 
 try {
   Product.deleteMany({}).then(() => {
