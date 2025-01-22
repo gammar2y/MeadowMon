@@ -8,9 +8,9 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
-const port = 3030;
+const port = 3000;
 
-const backendUrl = process.env.backend_url;
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 console.log(`Backend URL: ${backendUrl}`);
 
 app.use(cors({

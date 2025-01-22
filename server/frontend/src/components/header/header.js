@@ -1,9 +1,15 @@
 import React from 'react';
-import config from '../../config.js';
 
 const Header = () => {
-  console.log('Backend URL in Header:', config.backendUrl); // This should print the URL
-  return <header>Header Component</header>;
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  console.log(`Backend URL: ${backendUrl}`);
+
+  return (
+    <header>
+      <h1>Welcome to the App</h1>
+      <p>Backend URL: {backendUrl}</p>
+    </header>
+  );
 };
 
 export default Header;

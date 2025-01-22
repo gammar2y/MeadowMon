@@ -20,7 +20,7 @@ ENV MONGODB_URI=mongodb+srv://meadowmonbusiness:NXVwZOXBQChb01uj@cluster0.mongod
 ENV REACT_APP_BACKEND_URL=http://localhost:8000
 
 # Expose the port the app runs on
-EXPOSE 3030
+EXPOSE 3000
 
 # Start the app
 CMD ["node", "app.js"]
