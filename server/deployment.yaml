@@ -24,6 +24,6 @@ spec:
         imagePullPolicy: Always
         name: product
         ports:
-        - containerPort: 8000
+        - containerPort: 3000
           protocol: TCP
       restartPolicy: Always

@@ -17,7 +17,7 @@ COPY . .
 
 # Set environment variables
 ENV MONGODB_URI=mongodb+srv://meadowmonbusiness:NXVwZOXBQChb01uj@cluster0.mongodb.net/MeadowMon?retryWrites=true&w=majority
-ENV REACT_APP_BACKEND_URL=http://localhost:8000
+ENV REACT_APP_BACKEND_URL=http://localhost:3000
 
 # Expose the port the app runs on
 EXPOSE 3000
