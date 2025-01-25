@@ -5,6 +5,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'frontend/public',
+]
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -18,11 +23,11 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'tor01.proxy.cognitiveclass.ai',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'tor01.proxy.cognitiveclass.ai',
+    'http://localhost',
+    'http://127.0.0.1',
 ]
 
 REST_FRAMEWORK = {
