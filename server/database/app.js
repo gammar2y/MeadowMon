@@ -9,6 +9,24 @@ const fs = require('fs');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const { DATABASE_TYPE, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_HOST, POSTGRES_PORT } = process.env;
+
+if (DATABASE_TYPE === 'postgres') {
+  const { Client } = require('pg');
+  const client = new Client({
+    user: POSTGRES_USER,
+    host: POSTGRES_HOST,
+    database: POSTGRES_DB,
+    password: POSTGRES_PASSWORD,
+    port: POSTGRES_PORT,
+  });
+
+  client.connect()
+    .then(() => console.log('Connected to PostgreSQL'))
+    .catch(err => console.error('Connection error', err.stack));
+}
+
+// Your application code here
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 console.log(`Backend URL: ${backendUrl}`);

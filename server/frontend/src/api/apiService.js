@@ -1,22 +1,21 @@
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 
 export const fetchData = async () => {
   try {
-    const response = await fetch(`${backendUrl}/api/some-endpoint`);
+    const response = await fetch(`${API_BASE_URL}/`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Fetch data failed:', error);
-    throw error;
+    console.error('There was a problem with the fetch operation:', error);
   }
 };
 
 export const postData = async (data) => {
   try {
-    const response = await fetch(`${backendUrl}/api/some-endpoint`, {
+    const response = await fetch(`${backendUrl}/order_confirmation`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
