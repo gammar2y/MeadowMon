@@ -4,11 +4,11 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout as login, authenticate
 from django.views.decorators.csrf import csrf_exempt
-from ..djangoapp.product import Products
-from ..djangoapp.cards import Cards
-from ..djangoapp.populate import initiate
-from ..djangoapp.restapis import get_request
-from ..djangoapp.models import Product
+from djangoapp.product import Products
+from djangoapp.cards import Cards
+from djangoapp.populate import initiate
+from djangoapp.restapis import get_request
+from djangoapp.models import Product
 
 # logger instance
 logger = logging.getLogger(__name__)
