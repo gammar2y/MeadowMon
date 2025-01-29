@@ -1,27 +1,31 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    # Frontend routes
     path('login/', TemplateView.as_view(template_name="index.html")),
     path('register/', TemplateView.as_view(template_name="index.html")),
     path('requests/', TemplateView.as_view(template_name="index.html")),
     path('cart/', TemplateView.as_view(template_name="index.html")),
     path('checkout/', TemplateView.as_view(template_name="index.html")),
-    path('order_confirmation/', TemplateView.as_view(template_name="index.html")),
+    path(
+        'order_confirmation/', TemplateView.as_view(template_name="index.html")
+        ),
     path('get_product/', TemplateView.as_view(template_name="index.html")),
-    path('get_product_details/<int:product_id>/', TemplateView.as_view(template_name="index.html")),
+    path(
+        'get_product_details/<int:product_id>/', TemplateView.as_view(template_name="index.html")
+        ),
     path('about/', TemplateView.as_view(template_name="About.html")),
     path('contact/', TemplateView.as_view(template_name="Contact.html")),
     path('', TemplateView.as_view(template_name="index.html")),
+    path(
+        'favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'images/favicon.ico')
+        ),
     
-    # Admin route
     path('admin/', admin.site.urls),
-    
-    # API routes
+
     path('api/', include('djangoapp.urls')),
 ]
 
