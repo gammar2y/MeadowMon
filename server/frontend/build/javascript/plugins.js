@@ -355,7 +355,6 @@ function pluginsFrom(plugins) {
   const OTHER_PLUGIN_ORG_RE = /^(@(?!babel\/)[^/]+\/)(?![^/]*babel-plugin(?:-|\/|$)|[^/]+\/)/;
   const OTHER_PRESET_ORG_RE = /^(@(?!babel\/)[^/]+\/)(?![^/]*babel-preset(?:-|\/|$)|[^/]+\/)/;
   const OTHER_ORG_DEFAULT_RE = /^(@(?!babel$)[^/]+)$/;
-  const resolvePlugin = exports.resolvePlugin = resolveStandardizedName.bind(null, "plugin");
   const resolvePreset = exports.resolvePreset = resolveStandardizedName.bind(null, "preset");
   function* loadPlugin(name, dirname) {
     const filepath = resolvePlugin(name, dirname, yield* (0, _async.isAsync)());

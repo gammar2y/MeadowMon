@@ -1,12 +1,9 @@
-$(document).ready(function() {
-  $('.chocolat-parent').Chocolat();
-});
 (function ($) {
 
   "use strict";
 
   // init jarallax parallax
-  const initJarallax = function () {
+  var initJarallax = function () {
     jarallax(document.querySelectorAll(".jarallax"));
 
     jarallax(document.querySelectorAll(".jarallax-img"), {
@@ -14,19 +11,12 @@ $(document).ready(function() {
     });
   }
 
-  // filepath: /c:/Users/acrew/OneDrive/Desktop/MeadowMon/MeadowMon/server/frontend/build/static/javascript/script.js
-  document.addEventListener("DOMContentLoaded", function() {
-  jarallax(document.querySelectorAll('.jarallax'), {
-      speed: 0.2
-    });
-  });
-
   // input spinner
-  const initProductQty = function(){
+  var initProductQty = function(){
 
     $('.product-qty').each(function(){
 
-      const $el_product = $(this);
+      var $el_product = $(this);
       var quantity = 0;
 
       $el_product.find('.quantity-right-plus').click(function(e){
@@ -46,7 +36,6 @@ $(document).ready(function() {
     });
 
   }
-
 
   // init Chocolat light box
 	var initChocolat = function () {
@@ -177,6 +166,9 @@ $(document).ready(function() {
 
   }); // End of a document
 
+  $(function() {
+    $('.chocolat-parent').Chocolat(); 
+  });
   $(window).load(function(){
     $('.preloader').fadeOut();
   });

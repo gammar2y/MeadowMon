@@ -166,6 +166,9 @@
 
   }); // End of a document
 
+  $(function() {
+    $('.chocolat-parent').Chocolat(); 
+  });
   $(window).load(function(){
     $('.preloader').fadeOut();
   });

@@ -162,7 +162,7 @@
                 <div class="product-header d-flex justify-content-between mt-4">
                   <h3 class="display-7">Running Shoes For Men</h3>
                   <div class="modal-close-btn">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="button1">
                     </button>
                   </div>
                 </div>
@@ -204,7 +204,7 @@
                     </div>
                     <div class="col-md-6">
                       <a rel="nofollow" data-no-instant="" href="#" class="out-stock button">Out of stock</a>
-                      <button type="submit" class="btn btn-medium btn-black hvr-sweep-to-right">Add to cart</button>
+                      <button type="submit" class="btn btn-medium btn-black hvr-sweep-to-right" title="button2">Add to cart</button>
                     </div>
                   </div>
                 </div>
@@ -229,7 +229,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="modal-title fs-5">Cart</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="button3"></button>
         </div>
         <div class="modal-body">
           <div class="shopping-cart">
@@ -255,13 +255,13 @@
                       <div class="input-group product-qty">
                         <button type="button"
                           class="quantity-left-minus btn btn-light rounded-0 rounded-start btn-number"
-                          data-type="minus">
+                          data-type="minus" title="button4">
                           <svg width="16" height="16">
                             <use xlink:href="#minus"></use>
                           </svg>
                         </button>
-                        <input type="text" name="quantity" class="form-control input-number quantity" value="1">
-                        <button type="button" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number"
+                        <input type="text" name="quantity" class="form-control input-number quantity" value="1" title="Enter the quantity" placeholder="Enter quantity">
+                        <button type="button" title="button5" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number"
                           data-type="plus">
                           <svg width="16" height="16">
                             <use xlink:href="#plus"></use>
@@ -296,14 +296,15 @@
                     <div class="quantity-price d-flex justify-content-between align-items-center">
                       <div class="input-group product-qty">
                         <button type="button"
+                          title="button6"
                           class="quantity-left-minus btn btn-light rounded-0 rounded-start btn-number"
                           data-type="minus">
                           <svg width="16" height="16">
                             <use xlink:href="#minus"></use>
                           </svg>
                         </button>
-                        <input type="text" name="quantity" class="form-control input-number quantity" value="1">
-                        <button type="button" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number"
+                        <input type="text" name="quantity" class="form-control input-number quantity" value="1" title="Enter the quantity" placeholder="Enter quantity">
+                        <button type="button" title="button7" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number"
                           data-type="plus">
                           <svg width="16" height="16">
                             <use xlink:href="#plus"></use>
@@ -329,9 +330,9 @@
                 </span>
               </div>
               <div class="modal-footer my-4 justify-content-center">
-                <button type="button" class="btn btn-red hvr-sweep-to-right dark-sweep">View Cart</button>
+                <button type="button" title="button8" class="btn btn-red hvr-sweep-to-right dark-sweep">View Cart</button>
                 <button type="button"
-                  class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Checkout</button>
+                  class="btn btn-outline-gray hvr-sweep-to-right dark-sweep" title="button9">Checkout</button>
               </div>
             </div>
           </div>
@@ -368,8 +369,9 @@
               </div>
             </div>
             <div class="modal-footer mt-5 d-flex justify-content-center">
-              <button type="button" class="btn btn-red hvr-sweep-to-right dark-sweep">Login</button>
+              <button type="button" title="button10" class="btn btn-red hvr-sweep-to-right dark-sweep">Login</button>
               <button type="button"
+                      title="button11"
                 class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Register</button>
             </div>
           </div>
@@ -440,7 +442,7 @@
         <a class="navbar-brand" href="index.html">
           <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
         </a>
-        <button class="navbar-toggler d-flex d-lg-none order-3 border-0 p-1 ms-2" type="button" data-bs-toggle="offcanvas"
+        <button class="navbar-toggler d-flex d-lg-none order-3 border-0 p-1 ms-2" type="button" title="button12" data-bs-toggle="offcanvas"
           data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
           <svg class="navbar-icon">
             <use xlink:href="#navbar-icon"></use>
@@ -451,7 +453,7 @@
             <a class="navbar-brand ps-3" href="index.html">
               <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
             </a>
-            <button type="button" class="btn-close btn-close-black p-5" data-bs-dismiss="offcanvas" aria-label="Close"
+            <button type="button" class="btn-close btn-close-black p-5" title="button13" data-bs-dismiss="offcanvas" aria-label="Close"
               data-bs-target="#bdNavbar"></button>
           </div>
           <div class="offcanvas-body">
@@ -655,12 +657,12 @@
                 <img src="{% static 'images/card-item1.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button14" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button15" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -683,12 +685,12 @@
                 <img src="{% static 'images/card-item2.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button16" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button17" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -711,12 +713,12 @@
                 <img src="{% static 'images/card-item3.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button18" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button19" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -739,12 +741,12 @@
                 <img src="{% static 'images/card-item4.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button20" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button21" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -767,12 +769,12 @@
                 <img src="{% static 'images/card-item5.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button22" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button23" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -837,12 +839,12 @@
                 <img src="{% static 'images/card-item6.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button24" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button25" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -865,12 +867,12 @@
                 <img src="{% static 'images/card-item7.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button26" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button27" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -893,12 +895,12 @@
                 <img src="{% static 'images/card-item8.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button28" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button29" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -921,12 +923,12 @@
                 <img src="{% static 'images/card-item9.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button30" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button31" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -949,12 +951,12 @@
                 <img src="{% static 'images/card-item10.jpg' %}" alt="product-item" class="product-image img-fluid">
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button32" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button33" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
