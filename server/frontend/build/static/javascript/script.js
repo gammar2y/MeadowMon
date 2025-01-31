@@ -38,12 +38,17 @@
   }
 
   // init Chocolat light box
-	var initChocolat = function () {
-		Chocolat(document.querySelectorAll('.image-link'), {
-			imageSize: 'contain',
-			loop: true,
-		})
-	}
+  var initChocolat = function() {
+    $('.chocolat-parent').Chocolat();
+};
+
+$(document).ready(function() {
+    initChocolat();
+});
+
+$(window).on('load', function(){
+    $('.preloader').fadeOut();
+});
 
   // Animate Texts
   var initTextFx = function () {
@@ -161,16 +166,5 @@
         clickable: true,
       },
     });
-
-    
-
-  }); // End of a document
-
-  $(function() {
-    $('.chocolat-parent').Chocolat(); 
   });
-  $(window).load(function(){
-    $('.preloader').fadeOut();
-  });
-
 })(jQuery);

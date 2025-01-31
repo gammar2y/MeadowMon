@@ -10194,8 +10194,8 @@ jQuery.fn.load = function( url, params, callback ) {
 		off = String(url).indexOf(" ");
 
 	if ( off > -1 ) {
-		selector = stripAndCollapse( url.slice( off ) );
-		url = url.slice( 0, off );
+		selector = stripAndCollapse( String(url).slice( off ) ); // Ensure url is a string
+		url = String(url).slice( 0, off ); // Ensure url is a string
 	}
 
 	// If it's a function
