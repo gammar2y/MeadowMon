@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav id="header-nav" class="navbar navbar-expand-lg">
+        <div class="container-lg">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Shopping Cart</h1>
+        <!-- Shopping cart content -->
+        <div class="cart-items">
+            <!-- Example cart item -->
+            <div class="cart-item">
+                <img src="{% static 'images/single-product-thumb2.jpg' %}" class="img-fluid" alt="Product Image">
+                <div class="cart-item-details">
+                    <h4>Surging Sparks Booster Box</h4>
+                    <div class="quantity-price d-flex justify-content-between align-items-center">
+                        <div class="input-group product-qty">
+                            <button type="button" class="quantity-left-minus btn btn-light rounded-0 rounded-start btn-number" data-type="minus" title="Decrease quantity">
+                                <svg width="16" height="16">
+                                    <use xlink:href="#minus"></use>
+                                </svg>
+                            </button>
+                            <input type="text" name="quantity" class="form-control input-number quantity" value="1" title="Enter the quantity" placeholder="Enter quantity">
+                            <button type="button" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number" data-type="plus" title="Increase quantity">
+                                <svg width="16" height="16">
+                                    <use xlink:href="#plus"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p>Price: $200</p>
+                </div>
+                <button class="remove-item">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript files at the bottom -->
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery.chocolat.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'bundle.js' %}"></script>
+</body>
+</html>

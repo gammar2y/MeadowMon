@@ -3,13 +3,17 @@ from django.urls import path, include
 from django.views.generic import TemplateView, RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
+from . import views
 
 urlpatterns = [
     path('login/', TemplateView.as_view(template_name="index.html")),
     path('register/', TemplateView.as_view(template_name="index.html")),
     path('requests/', TemplateView.as_view(template_name="index.html")),
-    path('cart/', TemplateView.as_view(template_name="index.html")),
+    path('cart/', TemplateView.as_view(template_name="cart.html")),
     path('checkout/', TemplateView.as_view(template_name="index.html")),
+    path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('remove_from_cart/<int:cart_item_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('update_cart/<int:cart_item_id>/<int:quantity>/', views.update_cart, name='update_cart'),
     path(
         'order_confirmation/', TemplateView.as_view(template_name="index.html")
         ),

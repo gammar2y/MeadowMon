@@ -9,9 +9,46 @@ from djangoapp.cards import Cards
 from djangoapp.populate import initiate
 from djangoapp.restapis import get_request
 from djangoapp.models import Product
+from django.shortcuts import render, redirect
+from .models import CartItem, Product
 
 # logger instance
 logger = logging.getLogger(__name__)
+
+def index(request):
+    return render(request, 'index.html')
+
+def cart(request):
+    return render(request, 'cart.html')
+
+def cart(request):
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user)
+    else:
+        cart_items = []
+    return render(request, 'cart.html', {'cart_items': cart_items})
+
+def add_to_cart(request, product_id):
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=product_id)
+        cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
+        if not created:
+            cart_item.quantity += 1
+        cart_item.save()
+    return redirect('cart')
+
+def remove_from_cart(request, cart_item_id):
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
+        cart_item.delete()
+    return redirect('cart')
+
+def update_cart(request, cart_item_id, quantity):
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
+        cart_item.quantity = quantity
+        cart_item.save()
+    return redirect('cart')
 
 def get_product(request):
     count = Products.objects.count()
