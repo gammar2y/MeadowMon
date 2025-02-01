@@ -109,7 +109,33 @@ $(window).on('load', function(){
         },
       });
 
-          // Event listeners for quantity buttons
+      // homepage 2 slider
+      var swiper = new Swiper(".thumb-swiper", {
+        direction: 'horizontal',
+        slidesPerView: 6,
+        spaceBetween: 6,
+        breakpoints: {
+          900: {
+            direction: 'vertical',
+            spaceBetween: 6,
+          },
+        },
+      });
+      var swiper2 = new Swiper(".large-swiper", {
+        spaceBetween: 48,
+        effect: 'fade',
+        slidesPerView: 1,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        thumbs: {
+          swiper: swiper,
+        },
+      });
+
+    }
+
     $('.quantity-left-minus').click(function(e) {
       e.preventDefault();
       var quantity = parseInt($(this).siblings('.input-number').val());
@@ -155,33 +181,6 @@ $(window).on('load', function(){
           }
       });
   }
-
-      // homepage 2 slider
-      var swiper = new Swiper(".thumb-swiper", {
-        direction: 'horizontal',
-        slidesPerView: 6,
-        spaceBetween: 6,
-        breakpoints: {
-          900: {
-            direction: 'vertical',
-            spaceBetween: 6,
-          },
-        },
-      });
-      var swiper2 = new Swiper(".large-swiper", {
-        spaceBetween: 48,
-        effect: 'fade',
-        slidesPerView: 1,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        thumbs: {
-          swiper: swiper,
-        },
-      });
-
-    }
 
     // product single page
     var thumb_slider = new Swiper(".product-thumbnail-slider", {

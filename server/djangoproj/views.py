@@ -18,9 +18,6 @@ def index(request):
     return render(request, 'index.html')
 
 def cart(request):
-    return render(request, 'cart.html')
-
-def cart(request):
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user)
     else:
