@@ -15,7 +15,8 @@ from djangoapp.models import CartItem, Product
 logger = logging.getLogger(__name__)
 
 def index(request):
-    return render(request, 'index.html')
+    products = Product.objects.all()
+    return render(request, 'index.html', {'products': products})
 
 def cart(request):
     if request.user.is_authenticated:
@@ -45,6 +46,10 @@ def update_cart(request, cart_item_id, quantity):
         cart_item.quantity = quantity
         cart_item.save()
     return redirect('cart')
+
+def products(request):
+    all_products = Product.objects.all()
+    return render(request, 'products.html', {'products': all_products})
 
 def get_product(request):
     count = Products.objects.count()

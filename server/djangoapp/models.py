@@ -4,10 +4,15 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Product(models.Model):
+    product_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image_url = models.CharField(max_length=255)
+    set = models.CharField(max_length=255)
     description = models.TextField()
+    card_type = models.CharField(max_length=255)
+    bodyType = models.CharField(max_length=255)
+    year = models.CharField(max_length=4)
+    image_url = models.URLField(max_length=200)
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

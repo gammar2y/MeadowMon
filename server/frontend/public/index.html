@@ -152,21 +152,24 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="col-lg-12 col-md-12 me-3">
-            <div class="image-holder">
-              <img src="{% static 'images/summary-item1.jpg' %}" alt="Shoes">
-            </div>
+            <div class="product-list">
+              {% for product in products %}
+                  <div class="product-item">
+                      <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                      <h4>{{ product.name }}</h4>
+                      <p>Price: ${{ product.price }}</p>
+                      <p>{{ product.description }}</p>
+                  </div>
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="summary">
               <div class="summary-content fs-6">
                 <div class="product-header d-flex justify-content-between mt-4">
-                  <h3 class="display-7">Running Shoes For Men</h3>
                   <div class="modal-close-btn">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="button1">
                     </button>
                   </div>
                 </div>
-                <span class="product-price fs-3">$99</span>
                 <div class="product-details">
                   <p class="fs-7">Buy good shoes and a good mattress, because when you're not in one you're in the
                     other. With four pairs of shoes, I can travel the world.</p>
@@ -237,9 +240,13 @@
               <div class="mini-cart cart-list p-0 mt-3">
                 <div class="mini-cart-item d-flex border-bottom pb-3">
                   <div class="col-lg-2 col-md-3 col-sm-2 me-4">
-                    <a href="#" title="product-image">
-                      <img src="{% static 'images/single-product-thumb1.jpg' %}" class="img-fluid" alt="single-product-item">
-                    </a>
+                    <div class="product-list">
+                          <div class="product-item">
+                              <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                              <h4>{{ product.name }}</h4>
+                              <p>Price: ${{ product.price }}</p>
+                              <p>{{ product.description }}</p>
+                          </div>
                   </div>
                   <div class="col-lg-9 col-md-8 col-sm-8">
                     <div class="product-header d-flex justify-content-between align-items-center mb-3">
@@ -269,7 +276,6 @@
                         </button>
                       </div>
                       <div class="price-code">
-                        <span class="product-price fs-6">$99</span>
                       </div>
                     </div>
                     <!-- quantity-price -->
@@ -279,9 +285,13 @@
               <div class="mini-cart cart-list p-0 mt-3">
                 <div class="mini-cart-item d-flex border-bottom pb-3">
                   <div class="col-lg-2 col-md-3 col-sm-2 me-4">
-                    <a href="#" title="product-image">
-                      <img src="{% static 'images/single-product-thumb2.jpg' %}" class="img-fluid" alt="single-product-item">
-                    </a>
+                    <div class="product-list">
+                          <div class="product-item">
+                              <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                              <h4>{{ product.name }}</h4>
+                              <p>Price: ${{ product.price }}</p>
+                              <p>{{ product.description }}</p>
+                          </div>
                   </div>
                   <div class="col-lg-9 col-md-8 col-sm-8">
                     <div class="product-header d-flex justify-content-between align-items-center mb-3">
@@ -311,8 +321,7 @@
                           </svg>
                         </button>
                       </div>
-                      <div class="price-code">
-                        <span class="product-price fs-6">$99</span>
+                      <div class="price-code">>
                       </div>
                     </div>
                     <!-- quantity-price -->
@@ -507,7 +516,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link me-5" href="index.html">Shop</a>
+                <a class="nav-link me-5" href="{% url 'products' %}">Shop</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link me-5" href="#">Sale</a>
@@ -550,9 +559,14 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-              <img src="{% static 'images/card-image1.jpg' %}" alt="shoes" class="img-fluid jarallax-img">
+              <div class="product-list">
+                    <div class="product-item">
+                        <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                        <h4>{{ product.name }}</h4>
+                        <p>Price: ${{ product.price }}</p>
+                        <p>{{ product.description }}</p>
+                    </div>
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                <h2 class="card-title display-3 light">Stylish shoes for Women</h2>
                 <a href="index.html"
                   class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
               </div>
@@ -562,9 +576,14 @@
             <div class="row g-4">
               <div class="col-lg-12 mb-4">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{% static 'images/card-image2.jpg' %}" alt="shoes" class="img-fluid jarallax-img">
+                  <div class="product-list">
+                        <div class="product-item">
+                            <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                            <h4>{{ product.name }}</h4>
+                            <p>Price: ${{ product.price }}</p>
+                            <p>{{ product.description }}</p>
+                        </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Sports Wear</h2>
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -572,9 +591,14 @@
               </div>
               <div class="col-lg-12">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{% static 'images/card-image3.jpg' %}" alt="shoes" class="img-fluid jarallax-img">
+                  <div class="product-list">
+                        <div class="product-item">
+                            <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                            <h4>{{ product.name }}</h4>
+                            <p>Price: ${{ product.price }}</p>
+                            <p>{{ product.description }}</p>
+                        </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Fashion Shoes</h2>
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -584,9 +608,14 @@
           </div>
           <div class="swiper-slide">
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
-              <img src="{% static 'images/card-image4.jpg' %}" alt="shoes" class="img-fluid jarallax-img">
+              <div class="product-list">
+                    <div class="product-item">
+                        <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                        <h4>{{ product.name }}</h4>
+                        <p>Price: ${{ product.price }}</p>
+                        <p>{{ product.description }}</p>
+                    </div>
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                <h2 class="card-title display-3 light">Stylish shoes for men</h2>
                 <a href="index.html"
                   class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
               </div>
@@ -596,9 +625,14 @@
             <div class="row g-4">
               <div class="col-lg-12 mb-4">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{% static 'images/card-image5.jpg' %}" alt="shoes" class="img-fluid jarallax-img">
+                  <div class="product-list">
+                        <div class="product-item">
+                            <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                            <h4>{{ product.name }}</h4>
+                            <p>Price: ${{ product.price }}</p>
+                            <p>{{ product.description }}</p>
+                        </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Men Shoes</h2>
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -606,9 +640,14 @@
               </div>
               <div class="col-lg-12">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
-                  <img src="{% static 'images/card-image6.jpg' %}" alt="shoes" class="img-fluid jarallax-img">
+                  <div class="product-list">
+                        <div class="product-item">
+                            <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                            <h4>{{ product.name }}</h4>
+                            <p>Price: ${{ product.price }}</p>
+                            <p>{{ product.description }}</p>
+                        </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                    <h2 class="card-title style-2 display-4 light">Women Shoes</h2>
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -654,7 +693,13 @@
           <div class="col mb-4">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item1.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button14" data-bs-target="#modallong">
@@ -673,16 +718,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item2.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button16" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -701,16 +750,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item3.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button18" data-bs-target="#modallong">
@@ -729,16 +782,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item4.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button20" data-bs-target="#modallong">
@@ -757,16 +814,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item5.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button22" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -785,9 +846,7 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
@@ -800,7 +859,13 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="collection-card card border-0 d-flex flex-row align-items-end jarallax-keep-img">
-            <img src="{% static 'images/collection-item1.jpg' %}" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
+            <div class="product-list">
+                  <div class="product-item">
+                      <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                      <h4>{{ product.name }}</h4>
+                      <p>Price: ${{ product.price }}</p>
+                      <p>{{ product.description }}</p>
+                  </div>
             <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
               <h3 class="card-title display-3">
                 <a href="#">Minimal Collection</a>
@@ -811,7 +876,13 @@
         </div>
         <div class="col-lg-6 col-md-6">
           <div class="collection-card card border-0 d-flex flex-row jarallax-keep-img">
-            <img src="{% static 'images/collection-item2.jpg' %}" alt="product-item" class="border-rounded-10 img-fluid jarallax-img">
+            <div class="product-list">
+                  <div class="product-item">
+                      <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                      <h4>{{ product.name }}</h4>
+                      <p>Price: ${{ product.price }}</p>
+                      <p>{{ product.description }}</p>
+                  </div>
             <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
               <h3 class="card-title display-3">
                 <a href="#">Sneakers Collection</a>
@@ -836,7 +907,13 @@
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item6.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button24" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -855,16 +932,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item7.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button26" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -883,16 +964,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Cards</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item8.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button28" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -911,16 +996,20 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item9.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button30" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -939,16 +1028,21 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
-                <img src="{% static 'images/card-item10.jpg' %}" alt="product-item" class="product-image img-fluid">
+                <div class="product-list">
+                      <div class="product-item">
+                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                          <h4>{{ product.name }}</h4>
+                          <p>Price: ${{ product.price }}</p>
+                          <p>{{ product.description }}</p>
+                      </div>
+                    {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button32" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -967,9 +1061,7 @@
               </div>
               <div class="card-detail d-flex justify-content-between align-items-center mt-3">
                 <h3 class="card-title fs-6 fw-normal m-0">
-                  <a href="index.html">Running shoes for men</a>
                 </h3>
-                <span class="card-price fw-bold">$99</span>
               </div>
             </div>
           </div>

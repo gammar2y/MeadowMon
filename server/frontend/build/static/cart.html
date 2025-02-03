@@ -21,30 +21,31 @@
         <h1>Shopping Cart</h1>
         <!-- Shopping cart content -->
         <div class="cart-items">
-            <!-- Example cart item -->
-            <div class="cart-item">
-                <img src="{% static 'images/single-product-thumb2.jpg' %}" class="img-fluid" alt="Product Image">
-                <div class="cart-item-details">
-                    <h4>Surging Sparks Booster Box</h4>
-                    <div class="quantity-price d-flex justify-content-between align-items-center">
-                        <div class="input-group product-qty">
-                            <button type="button" class="quantity-left-minus btn btn-light rounded-0 rounded-start btn-number" data-type="minus" title="Decrease quantity">
-                                <svg width="16" height="16">
-                                    <use xlink:href="#minus"></use>
-                                </svg>
-                            </button>
-                            <input type="text" name="quantity" class="form-control input-number quantity" value="1" title="Enter the quantity" placeholder="Enter quantity">
-                            <button type="button" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number" data-type="plus" title="Increase quantity">
-                                <svg width="16" height="16">
-                                    <use xlink:href="#plus"></use>
-                                </svg>
-                            </button>
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <img src="{% static item.product.image_url %}" class="img-fluid" alt="Product Image">
+                    <div class="cart-item-details">
+                        <h4>{{ item.product.name }}</h4>
+                        <div class="quantity-price d-flex justify-content-between align-items-center">
+                            <div class="input-group product-qty">
+                                <button type="button" class="quantity-left-minus btn btn-light rounded-0 rounded-start btn-number" data-type="minus" title="Decrease quantity">
+                                    <svg width="16" height="16">
+                                        <use xlink:href="#minus"></use>
+                                    </svg>
+                                </button>
+                                <input type="text" name="quantity" class="form-control input-number quantity" value="{{ item.quantity }}" title="Enter the quantity" placeholder="Enter quantity">
+                                <button type="button" class="quantity-right-plus btn btn-light rounded-0 rounded-end btn-number" data-type="plus" title="Increase quantity">
+                                    <svg width="16" height="16">
+                                        <use xlink:href="#plus"></use>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
+                        <p>Price: ${{ item.product.price }}</p>
                     </div>
-                    <p>Price: $200</p>
+                    <button class="remove-item" data-cart-item-id="{{ item.id }}">Remove</button>
                 </div>
-                <button class="remove-item">Remove</button>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
