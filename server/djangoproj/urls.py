@@ -25,6 +25,7 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name="Contact.html")),
     path('products/', views.products, name='products'),  # Added URL pattern for products page
     path('', views.index, name='index'),  # Updated to use the view function
+    
     path(
         'favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'images/favicon.ico')
         ),

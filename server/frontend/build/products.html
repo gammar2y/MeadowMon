@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav id="header-nav" class="navbar navbar-expand-lg">
+        <div class="container-lg">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>All Products</h1>
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product-item">
+                    <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                    <h4>{{ product.name }}</h4>
+                    <p>Price: ${{ product.price }}</p>
+                    <p>{{ product.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- JavaScript files at the bottom -->
+    <script src="{% static 'javascript/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'javascript/jquery.chocolat.min.js' %}"></script>
+    <script src="{% static 'javascript/plugins.js' %}"></script>
+    <script src="{% static 'javascript/script.js' %}"></script>
+    <script src="{% static 'bundle.js' %}"></script>
+</body>
+</html>
