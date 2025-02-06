@@ -1,0 +1,13 @@
+{
+    "name": "nodeapp",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "node index.js",
+      "build": "npm run build && node controllers/productController.js"
+    },
+    "dependencies": {
+      "mongoose": "^8.10.0",
+      "fs": "0.0.1-security",
+      "path": "^0.12.7"
+    }
+  }

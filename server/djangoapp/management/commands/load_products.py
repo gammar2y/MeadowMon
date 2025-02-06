@@ -16,7 +16,15 @@ class Command(BaseCommand):
                 products = data.get('products', [])
                 for product_data in products:
                     if isinstance(product_data, dict):
-                        Product.objects.create(**product_data)
+                        required_fields = ['product_id', 'name', 'price', 'set', 'description', 'card_type', 'bodyType', 'year', 'image_url']
+                        if all(field in product_data for field in required_fields):
+                            Product.objects.update_or_create(
+                                product_id=product_data['product_id'],
+                                defaults=product_data
+                            )
+                        else:
+                            missing_fields = [field for field in required_fields if field not in product_data]
+                            self.stdout.write(self.style.ERROR(f"Missing fields {missing_fields} in product data: {product_data}"))
                     else:
                         self.stdout.write(self.style.ERROR(f"Invalid data format: {product_data}"))
                 self.stdout.write(self.style.SUCCESS('Successfully loaded products'))
