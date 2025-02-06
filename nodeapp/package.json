@@ -2,10 +2,11 @@
     "name": "nodeapp",
     "version": "1.0.0",
     "scripts": {
-      "start": "node index.js",
+      "start": "node app.js",
       "build": "npm run build && node controllers/productController.js"
     },
     "dependencies": {
+      "express": "^4.17.1",
       "mongoose": "^8.10.0",
       "fs": "0.0.1-security",
       "path": "^0.12.7"

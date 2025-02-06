@@ -9,7 +9,7 @@ const productSchema = new Schema({
   description: { type: String, required: true },
   card_type: { type: String, required: true },
   bodyType: { type: String, required: true },
-  year: { type: String, required: true },
+  year: { type: Number, required: true },
   image_url: { type: String, required: true }
 });
 

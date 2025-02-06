@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const loadProducts = async () => {
-  const jsonFilePath = path.join(__dirname, '..', 'database', 'data', 'products.json');
+  const jsonFilePath = path.join('/app/database/data/products.json');
 
   try {
     console.log(`Loading products from ${jsonFilePath}`);
@@ -15,6 +15,7 @@ const loadProducts = async () => {
       const missingFields = requiredFields.filter(field => !productData.hasOwnProperty(field));
 
       if (missingFields.length === 0) {
+        console.log(`Product data before update: ${JSON.stringify(productData)}`);
         await Product.updateOne(
           { product_id: productData.product_id },
           productData,

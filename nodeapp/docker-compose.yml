@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    container_name: api_container
+    build: .
+    ports:
+      - 4000:3000
+    depends_on: 
+      - mongo_db
+    environment:
+      - MONGODB_URI=mongodb://mongo_db:27017/meadowmon
+      - NODE_ENV=development
+    volumes:
+      - C:/Users/acrew/OneDrive/Desktop/MeadowMon/MeadowMon/nodeapp/database/data:/app/database/data
+
+volumes:
+  mongo_data: {}

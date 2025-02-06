@@ -3,11 +3,9 @@ const express = require('express');
 const app = express();
 
 // MongoDB connection settings
-const mongoURI = 'mongodb://localhost:27017/meadowmon'; // Replace with your MongoDB URI
+const mongoURI = process.env.MONGODB_URI || 'mongodb://mongo_db:27017/meadowmon';
 
 mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   serverSelectionTimeoutMS: 100000, // Increase timeout to 5 seconds
 });
 
