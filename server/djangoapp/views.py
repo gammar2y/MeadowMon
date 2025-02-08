@@ -50,7 +50,7 @@ def update_cart(request, cart_item_id, quantity):
 
 def products(request):
     all_products = Product.objects.all()
-    return render(request, 'products.html', {'products': all_products})
+    return render(request, 'index.html', {'products': all_products})
 
 def get_product(request):
     count = Products.objects.count()

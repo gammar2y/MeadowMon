@@ -1,9 +1,10 @@
-const Product = require('../models/product');
+const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
+const Product = require('../models/product'); // Ensure this import is correct
 
 const loadProducts = async () => {
-  const jsonFilePath = path.join('/app/database/data/products.json');
+  const jsonFilePath = path.join(__dirname, '../database/data/products.json');
 
   try {
     console.log(`Loading products from ${jsonFilePath}`);
@@ -32,7 +33,14 @@ const loadProducts = async () => {
   }
 };
 
-// Call the function to load products
-loadProducts();
+// Test MongoDB connection
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDB connected successfully');
+    loadProducts();
+  })
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+  });
 
 module.exports = { loadProducts };

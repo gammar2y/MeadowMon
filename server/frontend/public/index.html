@@ -160,6 +160,7 @@
                       <p>Price: ${{ product.price }}</p>
                       <p>{{ product.description }}</p>
                   </div>
+              {% endfor %}
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="summary">
@@ -238,6 +239,7 @@
           <div class="shopping-cart">
             <div class="shopping-cart-content">
               <div class="mini-cart cart-list p-0 mt-3">
+                {% for product in products %}
                 <div class="mini-cart-item d-flex border-bottom pb-3">
                   <div class="col-lg-2 col-md-3 col-sm-2 me-4">
                     <div class="product-list">
@@ -281,8 +283,10 @@
                     <!-- quantity-price -->
                   </div>
                 </div>
+                {% endfor %}
               </div>
               <div class="mini-cart cart-list p-0 mt-3">
+                {% for product in products %}
                 <div class="mini-cart-item d-flex border-bottom pb-3">
                   <div class="col-lg-2 col-md-3 col-sm-2 me-4">
                     <div class="product-list">
@@ -293,6 +297,7 @@
                               <p>{{ product.description }}</p>
                           </div>
                   </div>
+                  {% endfor %}
                   <div class="col-lg-9 col-md-8 col-sm-8">
                     <div class="product-header d-flex justify-content-between align-items-center mb-3">
                       <h4 class="product-title fs-6 me-5">Brand Shoes For Men</h4>
@@ -447,21 +452,25 @@
       </div>
     </div>
     <nav id="header-nav" class="navbar navbar-expand-lg">
+      {% for product in products %}
       <div class="container-lg">
         <a class="navbar-brand" href="index.html">
           <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
         </a>
+      {% endfor %}
         <button class="navbar-toggler d-flex d-lg-none order-3 border-0 p-1 ms-2" type="button" title="button12" data-bs-toggle="offcanvas"
           data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
           <svg class="navbar-icon">
             <use xlink:href="#navbar-icon"></use>
           </svg>
         </button>
+        {% for product in products %}
         <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar">
           <div class="offcanvas-header px-4 pb-0">
             <a class="navbar-brand ps-3" href="index.html">
               <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
             </a>
+        {% endfor %}
             <button type="button" class="btn-close btn-close-black p-5" title="button13" data-bs-dismiss="offcanvas" aria-label="Close"
               data-bs-target="#bdNavbar"></button>
           </div>
@@ -558,6 +567,7 @@
       <div class="swiper main-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
+            {% for product in products %}
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
               <div class="product-list">
                     <div class="product-item">
@@ -567,6 +577,7 @@
                         <p>{{ product.description }}</p>
                     </div>
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
+                {% endfor %}
                 <a href="index.html"
                   class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
               </div>
@@ -576,6 +587,7 @@
             <div class="row g-4">
               <div class="col-lg-12 mb-4">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
+                  {% for product in products %}
                   <div class="product-list">
                         <div class="product-item">
                             <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
@@ -584,6 +596,7 @@
                             <p>{{ product.description }}</p>
                         </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
+                    {% endfor %}
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -591,6 +604,7 @@
               </div>
               <div class="col-lg-12">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
+                  {% for product in products %}
                   <div class="product-list">
                         <div class="product-item">
                             <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
@@ -599,6 +613,7 @@
                             <p>{{ product.description }}</p>
                         </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
+                    {% endfor %}
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -608,6 +623,7 @@
           </div>
           <div class="swiper-slide">
             <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
+              {% for product in products %}
               <div class="product-list">
                     <div class="product-item">
                         <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
@@ -616,6 +632,7 @@
                         <p>{{ product.description }}</p>
                     </div>
               <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
+                {% endfor %}
                 <a href="index.html"
                   class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
               </div>
@@ -624,6 +641,7 @@
           <div class="swiper-slide">
             <div class="row g-4">
               <div class="col-lg-12 mb-4">
+                {% for product in products %}
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
                   <div class="product-list">
                         <div class="product-item">
@@ -633,6 +651,7 @@
                             <p>{{ product.description }}</p>
                         </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
+                    {% endfor %}
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -640,6 +659,7 @@
               </div>
               <div class="col-lg-12">
                 <div class="card d-flex flex-row align-items-end border-0 jarallax-keep-img">
+                  {% for product in products %}
                   <div class="product-list">
                         <div class="product-item">
                             <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
@@ -648,6 +668,7 @@
                             <p>{{ product.description }}</p>
                         </div>
                   <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
+                    {% endfor %}
                     <a href="index.html"
                       class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                   </div>
@@ -691,6 +712,7 @@
       <div class="product-content padding-small">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
           <div class="col mb-4">
+            {% for product in products %}
             <div class="product-card position-relative">
               <div class="card-img">
                 <div class="product-list">
@@ -701,6 +723,7 @@
                           <p>{{ product.description }}</p>
                       </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
+                  {% endfor %}
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button14" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
@@ -724,6 +747,7 @@
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -732,6 +756,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                    {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button16" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -756,6 +781,7 @@
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -764,6 +790,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                    {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button18" data-bs-target="#modallong">
@@ -788,6 +815,7 @@
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -796,6 +824,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                    {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button20" data-bs-target="#modallong">
@@ -820,6 +849,7 @@
           </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -828,6 +858,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                    {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button22" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -857,6 +888,7 @@
   <section id="collection-products" class="py-2 my-2 py-md-5 my-md-5">
     <div class="container-md">
       <div class="row">
+        {% for product in products %}
         <div class="col-lg-6 col-md-6 mb-4">
           <div class="collection-card card border-0 d-flex flex-row align-items-end jarallax-keep-img">
             <div class="product-list">
@@ -866,6 +898,7 @@
                       <p>Price: ${{ product.price }}</p>
                       <p>{{ product.description }}</p>
                   </div>
+                  {% endfor %}
             <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
               <h3 class="card-title display-3">
                 <a href="#">Minimal Collection</a>
@@ -875,6 +908,7 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-6">
+          {% for product in products %}
           <div class="collection-card card border-0 d-flex flex-row jarallax-keep-img">
             <div class="product-list">
                   <div class="product-item">
@@ -883,6 +917,7 @@
                       <p>Price: ${{ product.price }}</p>
                       <p>{{ product.description }}</p>
                   </div>
+                  {% endfor %}
             <div class="card-detail p-3 m-3 p-lg-5 m-lg-5">
               <h3 class="card-title display-3">
                 <a href="#">Sneakers Collection</a>
@@ -905,6 +940,7 @@
       <div class="product-content padding-small">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
           <div class="col mb-4 mb-3">
+            {% for product in products %}
             <div class="product-card position-relative">
               <div class="card-img">
                 <div class="product-list">
@@ -914,6 +950,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                      {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button24" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -938,6 +975,7 @@
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -946,6 +984,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                      {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button26" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -970,6 +1009,7 @@
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -978,6 +1018,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                      {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button28" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -1002,6 +1043,7 @@
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">
@@ -1010,6 +1052,7 @@
                           <p>Price: ${{ product.price }}</p>
                           <p>{{ product.description }}</p>
                       </div>
+                      {% endfor %}
                 <div class="cart-concern position-absolute d-flex justify-content-center">
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
                     <button type="button" class="btn btn-light" title="button30" data-bs-toggle="modal" data-bs-target="#modallong">
@@ -1034,6 +1077,7 @@
           </div>
           <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
+              {% for product in products %}
               <div class="card-img">
                 <div class="product-list">
                       <div class="product-item">

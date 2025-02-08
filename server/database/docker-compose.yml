@@ -12,15 +12,17 @@ services:
   # Node api service
   api:
     container_name: api_container
-    build: .
+    build: ../../nodeapp
     ports:
       - 4000:3000
     depends_on: 
       - mongo_db
     environment:
-      - MONGODB_URI=mongodb+srv://meadowmonbusiness:NXVwZOXBQChb01uj@cluster0.mongodb.net/MeadowMon?retryWrites=true&w=majority
+      - MONGODB_URI=mongodb://mongo_db:27017/meadowmon
       - REACT_APP_BACKEND_URL=http://localhost:8000
       - NODE_ENV=development
+    volumes:
+      - ./data:/app/database/data
 
 volumes:
   mongo_data: {}

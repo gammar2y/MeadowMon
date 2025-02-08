@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const path = require('path');
 const app = express();
 
 // MongoDB connection settings
-const mongoURI = process.env.MONGODB_URI || 'mongodb://mongo_db:27017/meadowmon';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/meadowmon';
 
 mongoose.connect(mongoURI, {
   serverSelectionTimeoutMS: 100000, // Increase timeout to 5 seconds
@@ -18,6 +19,9 @@ db.once('open', () => {
   const { loadProducts } = require('./controllers/productController');
   loadProducts();
 });
+
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, 'frontend/public')));
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
