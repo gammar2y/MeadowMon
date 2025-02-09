@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chocolat@0.4.21/dist/css/chocolat.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jarallax@1.12.8/dist/jarallax.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -278,6 +279,7 @@
                         </button>
                       </div>
                       <div class="price-code">
+                        <span>${{ product.price }}</span>
                       </div>
                     </div>
                     <!-- quantity-price -->
@@ -327,6 +329,7 @@
                         </button>
                       </div>
                       <div class="price-code">>
+                        <span>${{ product.price }}</span>
                       </div>
                     </div>
                     <!-- quantity-price -->
@@ -711,26 +714,26 @@
       </div>
       <div class="product-content padding-small">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5">
-          <div class="col mb-4">
-            {% for product in products %}
+          {% for product in products %}
+          <div class="col mb-4 mb-3">
             <div class="product-card position-relative">
               <div class="card-img">
                 <div class="product-list">
-                      <div class="product-item">
-                          <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
-                          <h4>{{ product.name }}</h4>
-                          <p>Price: ${{ product.price }}</p>
-                          <p>{{ product.description }}</p>
-                      </div>
+                  <div class="product-item">
+                    <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
+                    <h4>{{ product.name }}</h4>
+                    <p>Price: ${{ product.price }}</p>
+                    <p>{{ product.description }}</p>
+                  </div>
+                </div>
                 <div class="cart-concern position-absolute d-flex justify-content-center">
-                  {% endfor %}
                   <div class="cart-button d-flex gap-2 justify-content-center align-items-center">
-                    <button type="button" class="btn btn-light" data-bs-toggle="modal" title="button14" data-bs-target="#modallong">
+                    <button type="button" class="btn btn-light" title="button24" data-bs-toggle="modal" data-bs-target="#modallong">
                       <svg class="shopping-carriage">
                         <use xlink:href="#shopping-carriage"></use>
                       </svg>
                     </button>
-                    <button type="button" class="btn btn-light" title="button15" data-bs-target="#modaltoggle" data-bs-toggle="modal">
+                    <button type="button" class="btn btn-light" title="button25" data-bs-target="#modaltoggle" data-bs-toggle="modal">
                       <svg class="quick-view">
                         <use xlink:href="#quick-view"></use>
                       </svg>
@@ -745,6 +748,8 @@
               </div>
             </div>
           </div>
+          {% endfor %}
+        </div>
           <div class="col mb-4">
             <div class="product-card position-relative">
               {% for product in products %}
@@ -1267,6 +1272,7 @@
     </div>
   </footer>
   <div id="root"></div>
+  <pre>{{ products|safe }}</pre>
   <script src="{% static 'javascript/jquery-3.7.1.min.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/chocolat@0.4.21/dist/js/jquery.chocolat.min.js"></script>
   <script src="{% static 'javascript/plugins.js' %}"></script>

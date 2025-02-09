@@ -11,11 +11,23 @@ from djangoapp.restapis import get_request
 from djangoapp.models import Product
 from django.shortcuts import render, redirect
 from djangoapp.models import CartItem, Product
+from django.conf import settings
+import os
 # logger instance
 logger = logging.getLogger(__name__)
 
 def index(request):
-    products = Product.objects.all()
+    # Path to the products.json file
+    json_file_path = os.path.join(settings.BASE_DIR, 'database/data/products.json')
+    
+    # Read the JSON file
+    with open(json_file_path, 'r') as json_file:
+        data = json.load(json_file)
+    
+    # Extract products from the JSON data
+    products = data.get('products', [])
+    
+    # Pass the products to the template
     return render(request, 'index.html', {'products': products})
 
 def cart(request):

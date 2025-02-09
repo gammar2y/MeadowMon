@@ -12,33 +12,6 @@
  * @return {Object} output data
  */
 
-exports.__esModule = true;
-exports.getPlugins = getPlugins;
-exports.resolvePlugin = resolvePlugin;
-exports.loadPlugin = loadPlugin;
-
-module.exports = function(data, info, plugins) {
-
-    plugins.forEach(function(group) {
-
-        switch(group[0].type) {
-            case 'perItem':
-                data = perItem(data, info, group);
-                break;
-            case 'perItemReverse':
-                data = perItem(data, info, group, true);
-                break;
-            case 'full':
-                data = full(data, info, group);
-                break;
-        }
-
-    });
-
-    return data;
-
-};
-
 /**
  * Direct or reverse per-item loop.
  *
