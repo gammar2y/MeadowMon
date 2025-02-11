@@ -9,7 +9,7 @@ from djangoapp.cards import Cards
 from djangoapp.populate import initiate
 from djangoapp.restapis import get_request
 from djangoapp.models import Product
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from djangoapp.models import CartItem, Product
 from django.conf import settings
 import os
@@ -27,6 +27,9 @@ def index(request):
     # Extract products from the JSON data
     products = data.get('products', [])
     
+    # Debug statement to print the products data
+    print(products)
+    
     # Pass the products to the template
     return render(request, 'index.html', {'products': products})
 
@@ -36,10 +39,13 @@ def cart(request):
     else:
         cart_items = []
     return render(request, 'cart.html', {'cart_items': cart_items})
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'product_detail.html', {'product': product})
 
-def add_to_cart(request, product_id):
+def add_to_cart(request, id):
+    product = get_object_or_404(Product, id=id)
     if request.user.is_authenticated:
-        product = Product.objects.get(id=product_id)
         cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
         if not created:
             cart_item.quantity += 1
@@ -145,13 +151,6 @@ def product_requests(request):
 
     with open(file_name, 'w') as json_file:
         json.dump(submission, json_file, indent=4)
-def get_product_details(request, product_id):
-
-    if product_id:
-        endpoint = f"/fetchProduct/{product_id}"
-        product = get_request(endpoint)
-        return JsonResponse({"status": 200, "product": product})
-    return JsonResponse({"status": 400, "message": "Bad Request"})
 
 def submit_order(request):
     """

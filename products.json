@@ -1,7 +1,7 @@
 {
   "products": [
       {
-          "product_id": 0,
+          "id": 0,
           "name": "Sample Product",
           "price": 29.99,
           "set": "Evolving Skies",
@@ -12,7 +12,7 @@
           "image_url": "images/card-image1.jpg"
       },
       {
-          "product_id": 1,
+          "id": 1,
           "name": "Another Product",
           "price": 49.99,
           "set": "Fusion Strike",
@@ -23,7 +23,7 @@
           "image_url": "images/card-image2.jpg"
       },
       {
-          "product_id": 2,
+          "id": 2,
           "name": "Third Product",
           "price": 19.99,
           "set": "Chilling Reign",
@@ -34,7 +34,7 @@
           "image_url": "images/card-image3.jpg"
       },
       {
-          "product_id": 3,
+          "id": 3,
           "name": "Fourth Product",
           "price": 39.99,
           "set": "Battle Styles",
@@ -45,7 +45,7 @@
           "image_url": "images/card-image4.jpg"
       },
       {
-          "product_id": 4,
+          "id": 4,
           "name": "Fifth Product",
           "price": 59.99,
           "set": "Vivid Voltage",
@@ -56,7 +56,7 @@
           "image_url": "images/card-image5.jpg"
       },
       {
-          "product_id": 5,
+          "id": 5,
           "name": "Sixth Product",
           "price": 69.99,
           "set": "Rebel Clash",
@@ -67,7 +67,7 @@
           "image_url": "images/card-image6.jpg"
       },
       {
-          "product_id": 6,
+          "id": 6,
           "name": "Seventh Product",
           "price": 79.99,
           "set": "Sword & Shield",
@@ -78,7 +78,7 @@
           "image_url": "images/card-item1.jpg"
       },
       {
-          "product_id": 7,
+          "id": 7,
           "name": "Eighth Product",
           "price": 89.99,
           "set": "Sun & Moon",
@@ -89,7 +89,7 @@
           "image_url": "images/card-item2.jpg"
       },
       {
-          "product_id": 8,
+          "id": 8,
           "name": "Ninth Product",
           "price": 99.99,
           "set": "XY",
@@ -100,7 +100,7 @@
           "image_url": "images/card-item3.jpg"
       },
       {
-          "product_id": 9,
+          "id": 9,
           "name": "Tenth Product",
           "price": 109.99,
           "set": "Black & White",
@@ -111,7 +111,7 @@
           "image_url": "images/card-item4.jpg"
       },
       {
-          "product_id": 10,
+          "id": 10,
           "name": "Eleventh Product",
           "price": 119.99,
           "set": "Diamond & Pearl",
@@ -122,7 +122,7 @@
           "image_url": "images/card-item5.jpg"
       },
       {
-          "product_id": 11,
+          "id": 11,
           "name": "Twelfth Product",
           "price": 129.99,
           "set": "EX",
@@ -133,7 +133,7 @@
           "image_url": "images/card-item6.jpg"
       },
       {
-          "product_id": 12,
+          "id": 12,
           "name": "Thirteenth Product",
           "price": 139.99,
           "set": "Gold & Silver",
@@ -144,7 +144,7 @@
           "image_url": "images/card-item7.jpg"
       },
       {
-          "product_id": 13,
+          "id": 13,
           "name": "Fourteenth Product",
           "price": 149.99,
           "set": "Base Set",
@@ -155,7 +155,7 @@
           "image_url": "images/card-item8.jpg"
       },
       {
-          "product_id": 14,
+          "id": 14,
           "name": "Fifteenth Product",
           "price": 159.99,
           "set": "Jungle",
@@ -166,7 +166,7 @@
           "image_url": "images/card-item9.jpg"
       },
       {
-          "product_id": 15,
+          "id": 15,
           "name": "Sixteenth Product",
           "price": 169.99,
           "set": "Fossil",
@@ -177,7 +177,7 @@
           "image_url": "images/card-item10.jpg"
       },
       {
-          "product_id": 16,
+          "id": 16,
           "name": "Seventeenth Product",
           "price": 179.99,
           "set": "Team Rocket",
@@ -188,7 +188,7 @@
           "image_url": "images/collection-item1.jpg"
       },
       {
-          "product_id": 17,
+          "id": 17,
           "name": "Eighteenth Product",
           "price": 189.99,
           "set": "Gym Heroes",
@@ -199,7 +199,7 @@
           "image_url": "images/single-product-thumb1.jpg"
       },
       {
-          "product_id": 18,
+          "id": 18,
           "name": "Nineteenth Product",
           "price": 199.99,
           "set": "Neo Genesis",
@@ -210,7 +210,7 @@
           "image_url": "images/single-product-thumb2.jpg"
       },
       {
-          "product_id": 19,
+          "id": 19,
           "name": "Twentieth Product",
           "price": 209.99,
           "set": "Neo Discovery",

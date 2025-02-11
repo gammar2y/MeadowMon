@@ -38,9 +38,9 @@ def cart(request):
         cart_items = []
     return render(request, 'cart.html', {'cart_items': cart_items})
 
-def add_to_cart(request, product_id):
+def add_to_cart(request, id):
     if request.user.is_authenticated:
-        product = Product.objects.get(id=product_id)
+        product = Product.objects.get(id=id)
         cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
         if not created:
             cart_item.quantity += 1
@@ -146,10 +146,10 @@ def product_requests(request):
 
     with open(file_name, 'w') as json_file:
         json.dump(submission, json_file, indent=4)
-def get_product_details(request, product_id):
+def product_detail(request, id):
 
-    if product_id:
-        endpoint = f"/fetchProduct/{product_id}"
+    if id:
+        endpoint = f"/fetchProduct/{id}"
         product = get_request(endpoint)
         return JsonResponse({"status": 200, "product": product})
     return JsonResponse({"status": 400, "message": "Bad Request"})

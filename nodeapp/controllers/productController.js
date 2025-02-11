@@ -12,17 +12,17 @@ const loadProducts = async () => {
     const products = JSON.parse(data).products;
 
     for (const productData of products) {
-      const requiredFields = ['product_id', 'name', 'price', 'set', 'description', 'card_type', 'bodyType', 'year', 'image_url'];
+      const requiredFields = ['id', 'name', 'price', 'set', 'description', 'card_type', 'bodyType', 'year', 'image_url'];
       const missingFields = requiredFields.filter(field => !productData.hasOwnProperty(field));
 
       if (missingFields.length === 0) {
         console.log(`Product data before update: ${JSON.stringify(productData)}`);
         await Product.updateOne(
-          { product_id: productData.product_id },
+          { id: productData.id },
           productData,
           { upsert: true }
         );
-        console.log(`Processed product: ${productData.product_id}`);
+        console.log(`Processed product: ${productData.id}`);
       } else {
         console.error(`Missing fields ${missingFields} in product data: ${JSON.stringify(productData)}`);
       }

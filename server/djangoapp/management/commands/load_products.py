@@ -16,12 +16,12 @@ class Command(BaseCommand):
                 products = data.get('products', [])
                 for product_data in products:
                     if isinstance(product_data, dict):
-                        required_fields = ['product_id', 'name', 'price', 'set', 'description', 'card_type', 'bodyType', 'year', 'image_url']
+                        required_fields = ['id', 'name', 'price', 'set', 'description', 'card_type', 'bodyType', 'year', 'image_url']
                         missing_fields = [field for field in required_fields if field not in product_data]
                         if not missing_fields:
                             self.stdout.write(self.style.SUCCESS(f"Product data: {product_data}"))
                             Product.objects.update_or_create(
-                                product_id=product_data['product_id'],
+                                id=product_data['id'],
                                 defaults=product_data
                             )
                         else:

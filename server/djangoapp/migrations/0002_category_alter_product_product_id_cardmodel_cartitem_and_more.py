@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='product',
-            name='product_id',
+            name='id',
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.CreateModel(

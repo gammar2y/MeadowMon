@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const product = new Schema({
-  product_id: {
+  id: {
     type: Number,
     required: true,
   },
