@@ -14,5 +14,5 @@ urlpatterns = [
     path('api/order_confirmation', views.login_user, name='order_confirmation'),
     path('api/get_product', views.get_product, name='getproduct'),
     path('api/get_product_details/', views.product_detail, name='get_product_details'),
-    path('api/get_product/get_product_details/<int:product_id>', views.product_detail, name='product_details'),
+    path('api/get_product/get_product_details/<int:id>', views.product_detail, name='product_details'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
