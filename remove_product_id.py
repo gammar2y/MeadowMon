@@ -8,6 +8,14 @@ client = MongoClient(uri)
 db = client.MeadowMon
 products_collection = db.products
 
+# Remove the product_id field from documents with null product_id
+result = products_collection.update_many(
+    {"product_id": None},
+    {"$unset": {"product_id": ""}}
+)
+
+print(f"Matched {result.matched_count} documents and modified {result.modified_count} documents.")
+
 # Use aggregation pipeline to update documents
 pipeline = [
     {

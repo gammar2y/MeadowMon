@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # Set environment variables
-ENV MONGODB_URI=mongodb+srv://meadowmonbusiness:NXVwZOXBQChb01uj@cluster0.mongodb.net/MeadowMon?retryWrites=true&w=majority
+ENV MONGODB_URI=mongodb+srv://meadowmonbusiness:NXVwZOXBQChb01uj@meadowmon.zcf42.mongodb.net/MeadowMon?retryWrites=true&w=majority
 ENV REACT_APP_BACKEND_URL=http://localhost:3000
 
 # Expose the port the app runs on
