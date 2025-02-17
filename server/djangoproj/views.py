@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from djangoapp.product import Products
 from djangoapp.cards import Cards
 from djangoapp.populate import initiate
+from djangoapp.forms import SearchForm
 from djangoapp.restapis import get_request
 from djangoapp.models import Product
 from django.shortcuts import render, redirect, get_object_or_404
@@ -73,6 +74,16 @@ def checkout(request):
         cart_items = CartItem.objects.filter(user=request.user)
         total_price = sum(item.product.price * item.quantity for item in cart_items)
         return render(request, 'checkout.html', {'cart_items': cart_items, 'total_price': total_price})
+
+def search_view(request):
+    form = SearchForm(request.GET)
+    query = request.GET.get('query')
+    products = Product.objects.all()
+
+    if query:
+        products = products.filter(name__icontains=query)
+
+    return render(request, 'search_results.html', {'form': form, 'products': products})
 
 def remove_from_cart(request, cart_item_id):
     if request.user.is_authenticated:
