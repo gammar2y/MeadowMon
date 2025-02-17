@@ -5,15 +5,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from djangoapp.product import Products
 from djangoapp.cards import Cards
 from djangoapp.populate import initiate
 from djangoapp.restapis import get_request
 from djangoapp.models import Product
 from django.shortcuts import render, redirect, get_object_or_404
-from djangoapp.models import CartItem, Product
+from djangoapp.models import CartItem, Product, Order, OrderItem
 from django.conf import settings
 import os
+
 # logger instance
 logger = logging.getLogger(__name__)
 
@@ -28,9 +30,6 @@ def index(request):
     # Extract products from the JSON data
     products = data.get('products', [])
     
-    # Debug statement to print the products data
-    print(products)
-    
     # Pass the products to the template
     return render(request, 'index.html', {'products': products})
 
@@ -40,18 +39,40 @@ def cart(request):
     else:
         cart_items = []
     return render(request, 'cart.html', {'cart_items': cart_items})
-def product_detail(request, id):
-    product = get_object_or_404(Product, id=id)
-    return render(request, 'product_detail.html', {'product': product})
 
 def add_to_cart(request, id):
-    product = get_object_or_404(Product, id=id)
     if request.user.is_authenticated:
+        product = Product.objects.get(id=id)
         cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
         if not created:
             cart_item.quantity += 1
         cart_item.save()
     return redirect('cart')
+
+@login_required
+def checkout(request):
+    if request.method == 'POST':
+        cart_items = CartItem.objects.filter(user=request.user)
+        if not cart_items.exists():
+            return redirect('cart')
+
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+        order = Order.objects.create(user=request.user, total_price=total_price)
+
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=item.product,
+                quantity=item.quantity,
+                price=item.product.price
+            )
+            item.delete()  # Remove the item from the cart
+
+        return redirect('order_confirmation', order_id=order.id)
+    else:
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+        return render(request, 'checkout.html', {'cart_items': cart_items, 'total_price': total_price})
 
 def remove_from_cart(request, cart_item_id):
     if request.user.is_authenticated:
@@ -69,6 +90,11 @@ def update_cart(request, cart_item_id, quantity):
 def products(request):
     all_products = Product.objects.all()
     return render(request, 'index.html', {'products': all_products})
+
+@login_required
+def order_confirmation(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'order_confirmation.html', {'order': order})
 
 def login_view(request):
     if request.method == 'POST':
@@ -115,10 +141,6 @@ def login_user(request):
         login(request, user)
         response_data["status"] = "Authenticated"
     return JsonResponse(response_data)
-
-
-
-
 
 def logout_view(request):
     logout(request)
@@ -174,6 +196,13 @@ def product_requests(request):
 
     with open(file_name, 'w') as json_file:
         json.dump(submission, json_file, indent=4)
+def product_detail(request, id):
+
+    if id:
+        endpoint = f"/fetchProduct/{id}"
+        product = get_request(endpoint)
+        return JsonResponse({"status": 200, "product": product})
+    return JsonResponse({"status": 400, "message": "Bad Request"})
 
 def submit_order(request):
     """

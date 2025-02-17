@@ -5,13 +5,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from djangoapp.product import Products
 from djangoapp.cards import Cards
 from djangoapp.populate import initiate
 from djangoapp.restapis import get_request
 from djangoapp.models import Product
 from django.shortcuts import render, redirect, get_object_or_404
-from djangoapp.models import CartItem, Product
+from djangoapp.models import CartItem, Product, Order, OrderItem
 from django.conf import settings
 import os
 
@@ -48,6 +49,31 @@ def add_to_cart(request, id):
         cart_item.save()
     return redirect('cart')
 
+@login_required
+def checkout(request):
+    if request.method == 'POST':
+        cart_items = CartItem.objects.filter(user=request.user)
+        if not cart_items.exists():
+            return redirect('cart')
+
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+        order = Order.objects.create(user=request.user, total_price=total_price)
+
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=item.product,
+                quantity=item.quantity,
+                price=item.product.price
+            )
+            item.delete()  # Remove the item from the cart
+
+        return redirect('order_confirmation', order_id=order.id)
+    else:
+        cart_items = CartItem.objects.filter(user=request.user)
+        total_price = sum(item.product.price * item.quantity for item in cart_items)
+        return render(request, 'checkout.html', {'cart_items': cart_items, 'total_price': total_price})
+
 def remove_from_cart(request, cart_item_id):
     if request.user.is_authenticated:
         cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
@@ -64,6 +90,11 @@ def update_cart(request, cart_item_id, quantity):
 def products(request):
     all_products = Product.objects.all()
     return render(request, 'index.html', {'products': all_products})
+
+@login_required
+def order_confirmation(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'order_confirmation.html', {'order': order})
 
 def login_view(request):
     if request.method == 'POST':
