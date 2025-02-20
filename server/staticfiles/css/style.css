@@ -272,6 +272,16 @@ a {
   box-sizing: border-box;
 }
 
+.product-item img {
+  width: 125px;
+  height: 125px;
+}
+
+.custom-search-bar {
+  width: 300px; /* Adjust the width as needed */
+  max-width: 100%; /* Ensure it doesn't overflow */
+}
+
 html {
   box-sizing: border-box;
 }

@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +32,14 @@ CSRF_TRUSTED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [],
+}
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
 }
 
 # Application definition

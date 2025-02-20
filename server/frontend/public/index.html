@@ -1,97 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>MeadowMon</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="author" content="TemplatesJungle">
-  <meta name="keywords" content="Online Store">
-  <meta name="description" content="MeadowMon">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chocolat@0.4.21/dist/css/chocolat.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jarallax@1.12.8/dist/jarallax.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
-    rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeadowMon</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chocolat@0.4.21/dist/css/chocolat.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jarallax@1.12.8/dist/jarallax.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,900;1,900&family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .custom-search-bar {
+            width: 300px; /* Adjust the width as needed */
+            max-width: 100%; /* Ensure it doesn't overflow */
+        }
+    </style>
 </head>
-
 <body>
-  <header id="header" class="site-header text-black">
-    <div class="header-top border-bottom py-2">
-      <div class="container-lg">
-        <div class="row justify-content-evenly">
-          <div class="col">
-            <ul class="social-links list-unstyled d-flex m-0">
-              <li class="pe-2">
-                <a href="#">
-                  <svg class="facebook" width="20" height="20">
-                    <use xlink:href="#facebook"></use>
-                  </svg>
-                </a>
-              </li>
-              <li class="pe-2">
-                <a href="#">
-                  <svg class="instagram" width="20" height="20">
-                    <use xlink:href="#instagram"></use>
-                  </svg>
-                </a>
-              </li>
-              <li class="pe-2">
-                <a href="#">
-                  <svg class="youtube" width="20" height="20">
-                    <use xlink:href="#youtube"></use>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <svg class="pinterest" width="20" height="20">
-                    <use xlink:href="#pinterest"></use>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col d-none d-md-block">
-            <p class="text-center text-black m-0"><strong>Special Offer</strong>: Free Shipping on all the orders above $100
-            </p>
-          </div>
-          <div class="col">
-            <ul class="d-flex justify-content-end gap-3 list-unstyled m-0">
-              <li>
-                <a href="#">Contact</a>
-              </li>
-              <li>
-                <a href="{% url 'cart' %}">Cart</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li>
-                <a href="{% url 'logout' %}">Logout</a>
-              </li>
-              {% else %}
-              <li>
-                <a href="{% url 'login' %}">Login</a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
+    <header id="header" class="site-header text-black">
+        <div class="header-top border-bottom py-2">
+            <div class="container-lg">
+                <div class="row justify-content-evenly">
+                    <div class="col">
+                        <ul class="social-links list-unstyled d-flex m-0">
+                            <li class="pe-2">
+                                <a href="#">
+                                    <svg class="facebook" width="20" height="20">
+                                        <use xlink:href="#facebook"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="pe-2">
+                                <a href="#">
+                                    <svg class="instagram" width="20" height="20">
+                                        <use xlink:href="#instagram"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="pe-2">
+                                <a href="#">
+                                    <svg class="youtube" width="20" height="20">
+                                        <use xlink:href="#youtube"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg class="pinterest" width="20" height="20">
+                                        <use xlink:href="#pinterest"></use>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col d-none d-md-block">
+                        <p class="text-center text-black m-0"><strong>Special Offer</strong>: Free Shipping on all the orders above $100</p>
+                    </div>
+                    <div class="col">
+                        <ul class="d-flex justify-content-end gap-3 list-unstyled m-0">
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'cart' %}">Cart</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{% url 'login' %}">Login</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <nav id="header-nav" class="navbar navbar-expand-lg">
-      <div class="container-lg">
-        <a class="navbar-brand" href="{% url 'index' %}">
-          <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
-        </a>
+        <nav id="header-nav" class="navbar navbar-expand-lg">
+            <div class="container-lg">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'images/main-logo.png' %}" class="logo" alt="MeadowMon Logo">
+                </a>
         <button class="navbar-toggler d-flex d-lg-none order-3 border-0 p-1 ms-2" type="button" title="button12" data-bs-toggle="offcanvas"
           data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
           <svg class="navbar-icon">
@@ -119,12 +114,6 @@
                     <a href="index.html" class="dropdown-item">Home V2 </a>
                   </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link me-5" href="#">Men</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link me-5" href="#">Women</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link me-5 active dropdown-toggle border-0" href="#" data-bs-toggle="dropdown"
@@ -163,10 +152,12 @@
                 <a class="nav-link me-5" href="#">Sale</a>
               </li>
             </ul>
-            <form class="d-flex" method="get" action="{% url 'search' %}">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div class="collapse navbar-collapse">
+              <form class="d-flex ms-auto" method="get" action="{% url 'search' %}">
+                  <input class="form-control me-2 custom-search-bar" type="search" placeholder="Search" aria-label="Search" name="q">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+          </div>
           </div>
         </div>
         <div class="user-items ps-0 ps-md-5">
@@ -205,7 +196,7 @@
                 <div class="swiper-slide">
                     <div class="card d-flex flex-row align-items-end border-0 large jarallax-keep-img">
                         <div class="product-list">
-                            {% for product in products %}
+                          {% for product in products|slice:":6" %}
                             <div class="product-item">
                                 <img src="{% static product.image_url %}" class="img-fluid" alt="{{ product.name }}">
                                 <h4>{{ product.name }}</h4>
@@ -216,7 +207,7 @@
                             {% endfor %}
                         </div>
                         <div class="cart-concern p-3 m-3 p-lg-5 m-lg-5">
-                            <a href="index.html" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
+                            <a href="{% url 'products' %}" class="text-uppercase light mt-3 d-inline-block text-hover fw-bold light-border">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -232,7 +223,7 @@
         <div class="display-header d-flex align-items-center justify-content-between">
             <h2 class="section-title text-uppercase">Featured Products</h2>
             <div class="btn-right">
-                <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">View all</a>
+                <a href="{% url 'products' %}" class="d-inline-block text-uppercase text-hover fw-bold">View all</a>
             </div>
         </div>
         <div class="product-content padding-small">
@@ -283,7 +274,7 @@
       <div class="display-header d-flex align-items-center justify-content-between">
         <h2 class="section-title text-uppercase">Latest Products</h2>
         <div class="btn-right">
-          <a href="index.html" class="d-inline-block text-uppercase text-hover fw-bold">View all</a>
+          <a href="{% url 'products' %}" class="d-inline-block text-uppercase text-hover fw-bold">View all</a>
         </div>
       </div>
       <div class="product-content padding-small">

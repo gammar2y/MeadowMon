@@ -1,0 +1,32 @@
+{
+    "order_id": 5,
+    "user_id": 1,
+    "total_price": 129.98,
+    "order_items": [
+        {
+            "product_id": 8,
+            "name": "Ninth Product",
+            "quantity": 1,
+            "price": 99.99,
+            "total": 99.99
+        },
+        {
+            "product_id": 0,
+            "name": "Sample Product",
+            "quantity": 1,
+            "price": 29.99,
+            "total": 29.99
+        }
+    ],
+    "billing_info": {
+        "card_number": "789789789798",
+        "card_expiry": "04/19/2005",
+        "card_cvc": "265"
+    },
+    "shipping_address": {
+        "address": "5315 Rawhide Lane",
+        "city": "Colorado Springs",
+        "state": "Colorado",
+        "zip_code": "80917"
+    }
+}

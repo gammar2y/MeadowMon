@@ -14,7 +14,10 @@ from djangoapp.restapis import get_request
 from djangoapp.models import Product
 from django.shortcuts import render, redirect, get_object_or_404
 from djangoapp.models import CartItem, Product, Order, OrderItem
+from django.contrib import messages
 from django.conf import settings
+from djangoapp.utils import DecimalEncoder
+from decimal import Decimal
 import os
 
 # logger instance
@@ -41,13 +44,20 @@ def cart(request):
         cart_items = []
     return render(request, 'cart.html', {'cart_items': cart_items})
 
+@login_required
 def add_to_cart(request, id):
-    if request.user.is_authenticated:
-        product = Product.objects.get(id=id)
+    product = get_object_or_404(Product, id=id)
+    if product.quantity > 0:
         cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
-        if not created:
+        if cart_item.quantity < product.quantity:
             cart_item.quantity += 1
-        cart_item.save()
+            cart_item.save()
+        else:
+            # Handle the case where the user tries to add more than the available quantity
+            messages.warning(request, "Maximum Quantity")
+    else:
+        # Handle the case where the product is out of stock
+        messages.error(request, "Out of Stock! Check back soon.")
     return redirect('cart')
 
 @login_required
@@ -60,14 +70,51 @@ def checkout(request):
         total_price = sum(item.product.price * item.quantity for item in cart_items)
         order = Order.objects.create(user=request.user, total_price=total_price)
 
+        order_items = []
         for item in cart_items:
-            OrderItem.objects.create(
+            order_item = OrderItem.objects.create(
                 order=order,
                 product=item.product,
                 quantity=item.quantity,
                 price=item.product.price
             )
+            order_items.append({
+                'product_id': item.product.id,
+                'name': item.product.name,
+                'quantity': item.quantity,
+                'price': float(item.product.price),
+                'total': float(item.product.price * item.quantity)
+            })
             item.delete()  # Remove the item from the cart
+
+        # Collect billing and shipping information
+        billing_info = {
+            'card_number': request.POST['card_number'],
+            'card_expiry': request.POST['card_expiry'],
+            'card_cvc': request.POST['card_cvc']
+        }
+        shipping_address = {
+            'address': request.POST['address'],
+            'city': request.POST['city'],
+            'state': request.POST['state'],
+            'zip_code': request.POST['zip_code']
+        }
+
+        # Create the order data
+        order_data = {
+            'order_id': order.id,
+            'user_id': request.user.id,
+            'total_price': float(total_price),
+            'order_items': order_items,
+            'billing_info': billing_info,
+            'shipping_address': shipping_address
+        }
+
+        # Save the order data to a JSON file
+        json_file_path = os.path.join(settings.BASE_DIR, 'orders', f'order_{order.id}.json')
+        os.makedirs(os.path.dirname(json_file_path), exist_ok=True)
+        with open(json_file_path, 'w') as json_file:
+            json.dump(order_data, json_file, indent=4, cls=DecimalEncoder)
 
         return redirect('order_confirmation', order_id=order.id)
     else:
@@ -207,13 +254,10 @@ def product_requests(request):
 
     with open(file_name, 'w') as json_file:
         json.dump(submission, json_file, indent=4)
-def product_detail(request, id):
 
-    if id:
-        endpoint = f"/fetchProduct/{id}"
-        product = get_request(endpoint)
-        return JsonResponse({"status": 200, "product": product})
-    return JsonResponse({"status": 400, "message": "Bad Request"})
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'product_detail.html', {'product': product})
 
 def submit_order(request):
     """

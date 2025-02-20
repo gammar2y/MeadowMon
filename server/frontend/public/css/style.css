@@ -276,6 +276,11 @@ html {
   box-sizing: border-box;
 }
 
+.custom-search-bar {
+  width: 300px; /* Adjust the width as needed */
+  max-width: 100%; /* Ensure it doesn't overflow */
+}
+
 ul>li {
   color: var(--dark-gray-color);
 }
@@ -312,6 +317,11 @@ strong {
 .highlight {
   background: var(--dark-color);
   color: var(--light-color);
+}
+
+.product-item img {
+  width: 125px;
+  height: 125px;
 }
 
 .gray-400,

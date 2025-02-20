@@ -3,22 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
+    <title>Cart</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <nav id="header-nav" class="navbar navbar-expand-lg">
         <div class="container-lg">
             <a class="navbar-brand" href="{% url 'index' %}">
-                <img src="{% static 'images/main-logo.png' %}" class="logo" alt="logo">
+                <img src="{% static 'images/main-logo.png' %}" class="logo" alt="MeadowMon Logo">
             </a>
         </div>
     </nav>
-
     <div class="container">
         <h1>Shopping Cart</h1>
+        <!-- Display messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
         <!-- Shopping cart content -->
         <div class="cart-items">
             {% for item in cart_items %}
@@ -46,6 +55,9 @@
                     <button class="remove-item" data-cart-item-id="{{ item.id }}">Remove</button>
                 </div>
             {% endfor %}
+        </div>
+        <div class="checkout-section">
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
         </div>
     </div>
 

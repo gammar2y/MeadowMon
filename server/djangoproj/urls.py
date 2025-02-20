@@ -26,7 +26,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'images/favicon.ico')),
     path('admin/', admin.site.urls),
-    path('api/', include('djangoapp.urls')),
+    path('api/', include('djangoapp.api_urls')),  # Include the api_urls.py
 ]
 
 if settings.DEBUG:

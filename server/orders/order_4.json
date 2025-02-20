@@ -1,0 +1,25 @@
+{
+    "order_id": 4,
+    "user_id": 1,
+    "total_price": 29.99,
+    "order_items": [
+        {
+            "product_id": 0,
+            "name": "Sample Product",
+            "quantity": 1,
+            "price": 29.99,
+            "total": 29.99
+        }
+    ],
+    "billing_info": {
+        "card_number": "789789789789",
+        "card_expiry": "04/19/2027",
+        "card_cvc": "475"
+    },
+    "shipping_address": {
+        "address": "5315 Rawhide Lane",
+        "city": "Colorado Springs",
+        "state": "Colorado",
+        "zip_code": "80917"
+    }
+}
