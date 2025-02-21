@@ -150,6 +150,54 @@ def search_view(request):
 
     return render(request, 'search_results.html', {'form': form, 'products': products})
 
+def calculate_shipping(request):
+    zip_code = request.GET.get('zip_code')
+    # Replace with your FedEx API credentials and endpoint
+    fedex_api_url = 'https://api.fedex.com/rate/v1/rates/quotes'
+    fedex_api_key = 'YOUR_FEDEX_API_KEY'
+    fedex_account_number = 'YOUR_FEDEX_ACCOUNT_NUMBER'
+    fedex_meter_number = 'YOUR_FEDEX_METER_NUMBER'
+
+    # Example request payload for FedEx API
+    payload = {
+        "accountNumber": fedex_account_number,
+        "meterNumber": fedex_meter_number,
+        "requestedShipment": {
+            "shipper": {
+                "address": {
+                    "postalCode": "YOUR_ORIGIN_ZIP_CODE",
+                    "countryCode": "US"
+                }
+            },
+            "recipient": {
+                "address": {
+                    "postalCode": zip_code,
+                    "countryCode": "US"
+                }
+            },
+            "packageCount": 1,
+            "requestedPackageLineItems": [
+                {
+                    "weight": {
+                        "units": "LB",
+                        "value": 1.0
+                    }
+                }
+            ]
+        }
+    }
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {fedex_api_key}'
+    }
+
+    response = requests.post(fedex_api_url, json=payload, headers=headers)
+    data = response.json()
+    shipping_cost = data['rateReplyDetails'][0]['ratedShipmentDetails'][0]['totalNetCharge']['amount']
+
+    return JsonResponse({'shipping_cost': shipping_cost})
+
 
 @login_required
 def remove_from_cart(request, item_id):
@@ -170,6 +218,12 @@ def update_cart(request):
                 item.save()
         return redirect('checkout')
     return redirect('cart')
+
+def calculate_tax(request):
+    total_price = float(request.GET.get('total_price', 0))
+    tax_rate = 0.082  # Example tax rate of 7%
+    tax_cost = total_price * tax_rate
+    return JsonResponse({'tax_cost': tax_cost})
 
 def products(request):
     all_products = Product.objects.all()
