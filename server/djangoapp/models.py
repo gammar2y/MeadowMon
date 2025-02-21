@@ -1,3 +1,6 @@
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+import requests
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -27,6 +30,36 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+@receiver(post_save, sender=Order)
+def upload_order(sender, instance, created, **kwargs):
+    if created:
+        order_data = {
+            'order_id': instance.id,
+            'user_id': instance.user.id,
+            'total_price': float(instance.total_price),
+            'order_items': [
+                {
+                    'product_id': item.product.id,
+                    'name': item.product.name,
+                    'quantity': item.quantity,
+                    'price': float(item.price),
+                    'total': float(item.price * item.quantity)
+                }
+                for item in instance.items.all()
+            ]
+        }
+        # Upload order data to remote server
+        try:
+            response = requests.post('https://example.com/api/orders', json=order_data)
+            response.raise_for_status()
+        except requests.RequestException as e:
+            print(f'Failed to upload order: {e}')
+
+        # Update product quantity
+        for item in instance.items.all():
+            item.product.quantity -= item.quantity
+            item.product.save()
 
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,4 +1,5 @@
 import json
+import requests
 import logging
 from django.http import JsonResponse
 from django.contrib.auth.models import User
@@ -100,6 +101,23 @@ def checkout(request):
             'zip_code': request.POST['zip_code']
         }
 
+        # Process payment using transaction API
+        payment_data = {
+            'card_number': billing_info['card_number'],
+            'card_expiry': billing_info['card_expiry'],
+            'card_cvc': billing_info['card_cvc'],
+            'amount': total_price,
+            'currency': 'USD'
+        }
+        try:
+            response = requests.post('https://example.com/api/transactions', json=payment_data)
+            response.raise_for_status()
+            payment_response = response.json()
+            if payment_response['status'] != 'success':
+                return render(request, 'checkout.html', {'error': 'Payment failed. Please try again.'})
+        except requests.RequestException as e:
+            return render(request, 'checkout.html', {'error': f'Payment failed: {e}'})
+
         # Create the order data
         order_data = {
             'order_id': order.id,
@@ -132,17 +150,25 @@ def search_view(request):
 
     return render(request, 'search_results.html', {'form': form, 'products': products})
 
-def remove_from_cart(request, cart_item_id):
-    if request.user.is_authenticated:
-        cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
-        cart_item.delete()
+
+@login_required
+def remove_from_cart(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id, user=request.user)
+    cart_item.delete()
+    if request.is_ajax():
+        return JsonResponse({'success': True})
+    messages.success(request, 'Item removed from cart.')
     return redirect('cart')
 
-def update_cart(request, cart_item_id, quantity):
-    if request.user.is_authenticated:
-        cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
-        cart_item.quantity = quantity
-        cart_item.save()
+@login_required
+def update_cart(request):
+    if request.method == 'POST':
+        for item in CartItem.objects.filter(user=request.user):
+            quantity = request.POST.get(f'quantity_{item.id}')
+            if quantity:
+                item.quantity = int(quantity)
+                item.save()
+        return redirect('checkout')
     return redirect('cart')
 
 def products(request):
