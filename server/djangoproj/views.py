@@ -150,22 +150,45 @@ def search_view(request):
 
     return render(request, 'search_results.html', {'form': form, 'products': products})
 
+def get_fedex_oauth_token():
+    url = "https://apis-sandbox.fedex.com/oauth/token"
+    payload = {
+        'grant_type': 'client_credentials',
+        'client_id': 'l75723e60ed5cb4a7891f8ed2514c46ca2',
+        'client_secret': 'b145cb90a17d444583cfab086ca5f60c'
+    }
+    headers = {
+        'Content-Type': "application/x-www-form-urlencoded"
+    }
+
+    response = requests.post(url, data=payload, headers=headers)
+    response_data = response.json()
+    
+    if response.status_code == 200 and 'access_token' in response_data:
+        return response_data['access_token']
+    else:
+        logger.error(f"Failed to get OAuth token: {response_data}")
+        raise KeyError("access_token not found in the response or invalid credentials")
+
 def calculate_shipping(request):
     zip_code = request.GET.get('zip_code')
-    # Replace with your FedEx API credentials and endpoint
-    fedex_api_url = 'https://api.fedex.com/rate/v1/rates/quotes'
-    fedex_api_key = 'YOUR_FEDEX_API_KEY'
-    fedex_account_number = 'YOUR_FEDEX_ACCOUNT_NUMBER'
-    fedex_meter_number = 'YOUR_FEDEX_METER_NUMBER'
+    origin_postal_code = '80917'
 
-    # Example request payload for FedEx API
+    try:
+        # Get OAuth token
+        access_token = get_fedex_oauth_token()
+    except KeyError as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    # Correct FedEx API URL for rate quotes
+    fedex_api_url = 'https://apis-sandbox.fedex.com/rate/v1/rates/quotes'
+
     payload = {
-        "accountNumber": fedex_account_number,
-        "meterNumber": fedex_meter_number,
+        "accountNumber": "203687906",
         "requestedShipment": {
             "shipper": {
                 "address": {
-                    "postalCode": "YOUR_ORIGIN_ZIP_CODE",
+                    "postalCode": origin_postal_code,
                     "countryCode": "US"
                 }
             },
@@ -189,14 +212,22 @@ def calculate_shipping(request):
 
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer {fedex_api_key}'
+        'Authorization': f'Bearer {access_token}'
     }
 
     response = requests.post(fedex_api_url, json=payload, headers=headers)
-    data = response.json()
-    shipping_cost = data['rateReplyDetails'][0]['ratedShipmentDetails'][0]['totalNetCharge']['amount']
-
-    return JsonResponse({'shipping_cost': shipping_cost})
+    
+    if response.status_code == 200:
+        try:
+            data = response.json()
+            shipping_cost = data['rateReplyDetails'][0]['ratedShipmentDetails'][0]['totalNetCharge']['amount']
+            return JsonResponse({'shipping_cost': shipping_cost})
+        except (ValueError, KeyError, IndexError) as e:
+            return JsonResponse({'error': 'Failed to parse shipping cost from response', 'details': str(e)}, status=500)
+    else:
+        # Log the response content for debugging
+        logger.error(f"Failed to get shipping cost: {response.content}")
+        return JsonResponse({'error': 'Failed to get shipping cost', 'status_code': response.status_code, 'details': response.content.decode('utf-8')}, status=response.status_code)
 
 
 @login_required
@@ -218,6 +249,12 @@ def update_cart(request):
                 item.save()
         return redirect('checkout')
     return redirect('cart')
+
+def calculate_tax(request):
+    total_price = float(request.GET.get('total_price', 0))
+    tax_rate = 0.082  # Example tax rate of 7%
+    tax_cost = total_price * tax_rate
+    return JsonResponse({'tax_cost': tax_cost})
 
 def products(request):
     all_products = Product.objects.all()

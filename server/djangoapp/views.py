@@ -153,10 +153,12 @@ def search_view(request):
 def calculate_shipping(request):
     zip_code = request.GET.get('zip_code')
     # Replace with your FedEx API credentials and endpoint
-    fedex_api_url = 'https://api.fedex.com/rate/v1/rates/quotes'
-    fedex_api_key = 'YOUR_FEDEX_API_KEY'
-    fedex_account_number = 'YOUR_FEDEX_ACCOUNT_NUMBER'
-    fedex_meter_number = 'YOUR_FEDEX_METER_NUMBER'
+    fedex_api_url = 'https://ws.fedex.com:443/web-services'
+    fedex_api_key = '1RS9KoyOI1V26WOy'
+    fedex_security_code = 'bHtdJM7G0ngGNefsMRzhbQMRI'
+    fedex_account_number = '203687906'
+    fedex_meter_number = '263283956'
+    origin_postal_code = '80917'
 
     # Example request payload for FedEx API
     payload = {
@@ -165,7 +167,7 @@ def calculate_shipping(request):
         "requestedShipment": {
             "shipper": {
                 "address": {
-                    "postalCode": "YOUR_ORIGIN_ZIP_CODE",
+                    "postalCode": origin_postal_code,
                     "countryCode": "US"
                 }
             },
@@ -189,7 +191,8 @@ def calculate_shipping(request):
 
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer {fedex_api_key}'
+        'X-Api-Key': fedex_api_key,
+        'X-Api-Security': fedex_security_code
     }
 
     response = requests.post(fedex_api_url, json=payload, headers=headers)
