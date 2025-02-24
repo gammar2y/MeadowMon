@@ -185,29 +185,44 @@ def calculate_shipping(request):
 
     payload = {
         "accountNumber": "203687906",
-        "requestedShipment": {
-            "shipper": {
-                "address": {
-                    "postalCode": origin_postal_code,
+        "pickupType": "REGULAR_PICKUP",  # Example pickup type
+        "serviceType": "FEDEX_GROUND",  # Example service type
+        "packagingType": "YOUR_PACKAGING",  # Example packaging type
+        "shipper": {
+            "address": {
+                "postalCode": origin_postal_code,
+                "countryCode": "US"
+            }
+        },
+        "recipient": {
+            "address": {
+                "postalCode": zip_code,
+                "countryCode": "US"
+            }
+        },
+        "shippingChargesPayment": {
+            "paymentType": "SENDER",
+            "payor": {
+                "responsibleParty": {
+                    "accountNumber": "203687906",
                     "countryCode": "US"
                 }
-            },
-            "recipient": {
-                "address": {
-                    "postalCode": zip_code,
-                    "countryCode": "US"
+            }
+        },
+        "labelSpecification": {
+            "labelFormatType": "COMMON2D",
+            "imageType": "PDF",
+            "labelStockType": "PAPER_4X6"
+        },
+        "packageCount": 1,
+        "requestedPackageLineItems": [
+            {
+                "weight": {
+                    "units": "LB",
+                    "value": 1.0
                 }
-            },
-            "packageCount": 1,
-            "requestedPackageLineItems": [
-                {
-                    "weight": {
-                        "units": "LB",
-                        "value": 1.0
-                    }
-                }
-            ]
-        }
+            }
+        ]
     }
 
     headers = {
@@ -238,6 +253,82 @@ def remove_from_cart(request, item_id):
         return JsonResponse({'success': True})
     messages.success(request, 'Item removed from cart.')
     return redirect('cart')
+
+def create_shipment(request):
+    zip_code = request.GET.get('zip_code')
+    origin_postal_code = '80917'
+
+    try:
+        # Get OAuth token
+        access_token = get_fedex_oauth_token()
+    except KeyError as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+    # FedEx API URL for creating shipments
+    fedex_api_url = 'https://apis-sandbox.fedex.com/ship/v1/shipments'
+
+    payload = {
+        "accountNumber": "203687906",
+        "requestedShipment": {
+            "shipper": {
+                "address": {
+                    "postalCode": origin_postal_code,
+                    "countryCode": "US"
+                }
+            },
+            "recipient": {
+                "address": {
+                    "postalCode": zip_code,
+                    "countryCode": "US"
+                }
+            },
+            "pickupType": "REGULAR_PICKUP",
+            "serviceType": "FEDEX_GROUND",
+            "packagingType": "BOX",
+            "shippingChargesPayment": {
+                "paymentType": "SENDER",
+                "payor": {
+                    "responsibleParty": {
+                        "accountNumber": "203687906",
+                        "countryCode": "US"
+                    }
+                }
+            },
+            "labelSpecification": {
+                "labelFormatType": "COMMON2D",
+                "imageType": "PDF",
+                "labelStockType": "PAPER_4X6"
+            },
+            "packageCount": 1,
+            "requestedPackageLineItems": [
+                {
+                    "weight": {
+                        "units": "LB",
+                        "value": 1.0
+                    }
+                }
+            ]
+        }
+    }
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {access_token}'
+    }
+
+    response = requests.post(fedex_api_url, json=payload, headers=headers)
+    
+    if response.status_code == 200:
+        try:
+            data = response.json()
+            shipment_details = data['output']['transactionShipments'][0]
+            return JsonResponse({'shipment_details': shipment_details})
+        except (ValueError, KeyError, IndexError) as e:
+            return JsonResponse({'error': 'Failed to parse shipment details from response', 'details': str(e)}, status=500)
+    else:
+        # Log the response content for debugging
+        logger.error(f"Failed to create shipment: {response.content}")
+        return JsonResponse({'error': 'Failed to create shipment', 'status_code': response.status_code, 'details': response.content.decode('utf-8')}, status=response.status_code)
 
 @login_required
 def update_cart(request):
